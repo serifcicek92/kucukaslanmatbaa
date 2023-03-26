@@ -1,0 +1,50 @@
+<?php
+use App\System\Application;
+    function sidebarCreate($ustId){
+        $menuler = Application::$app->kategoriler->get($ustId);
+        foreach ($menuler as $menu) {
+            $subMenu = Application::$app->kategoriler->get($menu["ID"]);
+            if (count($subMenu)>0) {
+                echo '<li><a href="#pageSubmenu'.$menu["ID"].'" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">'.$menu["ADI"].'</a>
+                        <ul class="collapse list-unstyled" id="pageSubmenu'.$menu["ID"].'">';
+                echo '<li><a href="kategori/'.$menu["link"].'" class="border">Hepsi</a></li>';
+
+                        sidebarCreate($menu["ID"]);
+                echo '</ul>
+                    </li>';
+            }else{
+                echo '<li><a href="kategori/'.$menu["link"].'">'.$menu["ADI"].'</a></li>';
+            }
+        }
+    }
+?>
+<nav id="sidebar">
+    <div class="p-4 pt-5">
+        <h5>Kategoriler</h5>
+        <ul class="list-unstyled components mb-5">
+            <?php sidebarCreate(2);?>
+        </ul>
+        <!-- <div class="mb-5">
+            <h5>Tag Cloud</h5>
+            <div class="tagcloud">
+                <a href="#" class="tag-cloud-link">dish</a>
+                <a href="#" class="tag-cloud-link">menu</a>
+                <a href="#" class="tag-cloud-link">food</a>
+                <a href="#" class="tag-cloud-link">sweet</a>
+                <a href="#" class="tag-cloud-link">tasty</a>
+                <a href="#" class="tag-cloud-link">delicious</a>
+                <a href="#" class="tag-cloud-link">desserts</a>
+                <a href="#" class="tag-cloud-link">drinks</a>
+            </div>
+        </div>
+        <div class="mb-5">
+            <h5>Newsletter</h5>
+            <form action="#" class="subscribe-form">
+                <div class="form-group d-flex">
+                    <div class="icon"><span class="icon-paper-plane"></span></div>
+                    <input type="text" class="form-control" placeholder="Enter Email Address">
+                </div>
+            </form>
+        </div> -->
+    </div>
+</nav>

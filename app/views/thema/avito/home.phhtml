@@ -1,0 +1,178 @@
+<!-- Slider -->
+<!-- Start WOWSlider.com BODY section --> <!-- add to the <body> of your page -->
+<div id='wowslider-container1'>
+	<div class='ws_images'><ul>
+		<li><img src='assets/images/slider/slider-1.jpg' alt='slider-1' title='slider-1' id='wows1_0'/></li>
+		<li><a href='http://wowslider.net'><img src='assets/images/slider/slider-2.jpg' alt='bootstrap carousel example' title='slider-2' id='wows1_1'/></a></li>
+		<li><img src='assets/images/slider/slider-3.jpg' alt='slider-3' title='slider-3' id='wows1_2'/></li>
+	</ul></div>
+	<div class='ws_bullets'><div>
+		<a href='#' title='slider-1'><span><img src='assets/images/slider/slider-1.jpg' alt='slider-1'/>1</span></a>
+		<a href='#' title='slider-2'><span><img src='assets/images/slider/slider-2.jpg' alt='slider-2'/>2</span></a>
+		<a href='#' title='slider-3'><span><img src='assets/images/slider/slider-3.jpg' alt='slider-3'/>3</span></a>
+	</div></div><div class='ws_script' style='position:absolute;left:-99%'><a href='http://wowslider.net'>slider html</a> by WOWSlider.com v9.0</div>
+	<div class='ws_shadow'></div>
+</div>	
+
+<!-- Content -->
+
+<section class='product-category section'>
+	<div class='container'>
+		<div class='row'>
+			<div class='col-md-12'>
+				<div class='title text-center'>
+					<h2>ÜRÜN KATEGORİLERİ</h2>
+				</div>
+			</div>
+			<div class='col-md-6'>
+				<div class='category-box'>
+					<a href='#!'>
+						<img src='assets/images/kategoriler/category-1.jpg' alt='' />
+						<div class='content'>
+							<h3>Kartvizit</h3>
+							<p>Kartvizit tasarımları ve baskısı</p>
+						</div>
+					</a>	
+				</div>
+				<div class='category-box'>
+					<a href='#!'>
+						<img src='assets/images/kategoriler/category-2.jpg' alt='' />
+						<div class='content'>
+							<h3>Katalog</h3>
+							<p>Dijital Katalog Tasarımı ve Baskısı</p>
+						</div>
+					</a>	
+				</div>
+			</div>
+			<div class='col-md-6'>
+				<div class='category-box category-box-2'>
+					<a href='#!'>
+						<img src='assets/images/kategoriler/category-3.jpg' alt='' />
+						<div class='content'>
+							<h3>Davetiye</h3>
+							<p>Davetiye Tasarım ve Baskısı</p>
+						</div>
+					</a>	
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class='products section bg-gray'>
+	<div class='container'>
+		<div class='row'>
+			<div class='title text-center'>
+				<h2>Davetiyeler</h2>
+			</div>
+		</div>
+		<div class='row'>
+		
+		<?php for ($i=0; $i < 3; $i++) {
+			echo "
+			<div class='col-md-4'>
+				<div class='product-item'>
+					<div class='product-thumb'>
+						<span class='bage'>Sale</span>
+						<img class='img-responsive' src='assets/images/products/{$model[$i]->imagepath}' alt='product-img' />
+						<div class='preview-meta'>
+							<ul>
+								<li>
+									<a href='product/{$model[$i]->seourl}'>
+										<i class='tf-ion-ios-search-strong'></i>
+									</a>
+								</li>
+								<!--<li>
+			                        <a href='#!' ><i class='tf-ion-ios-heart'></i></a>
+								</li>-->
+								<li>
+									<a href='#' onclick='addcard(event,this)' class='addcard' data-product='".$model[$i]->id."'><i class='tf-ion-android-cart'></i></a>
+								</li>
+							</ul>
+                      	</div>
+					</div>
+					<div class='product-content'>
+						<h4><a href='product/{$model[$i]->seourl}'>{$model[$i]->name}</a></h4>
+						<p class='price'>{$model[$i]->prices} TL</p>
+					</div>
+				</div>
+			</div>
+			";
+		} ?>
+
+		<script>
+			function addcard(e,obj) {
+					e.preventDefault();
+					const product = obj.dataset.product;
+					const formdata = new FormData();
+					formdata.append("productid",product);
+					SendXMLHttpRequest(formdata,"/addbasket",function handle(returnStr, status){
+						if (returnStr.trim()==1) {
+							obj.innerHTML = "<i class='tf-ion-checkmark'></i>";
+							SendXMLHttpRequest(null,"/basketview",function handle(returnStr,status) {
+								document.querySelector(".basketview").innerHTML = returnStr;
+							});
+						}
+					});
+			}
+		</script>
+				
+		<!-- Modal -->
+		<div class='modal product-modal fade' id='product-modal'>
+			<button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+				<i class='tf-ion-close'></i>
+			</button>
+		  	<div class='modal-dialog ' role='document'>
+		    	<div class='modal-content'>
+			      	<div class='modal-body'>
+			        	<div class='row'>
+			        		<div class='col-md-8 col-sm-6 col-xs-12'>
+			        			<div class='modal-image'>
+				        			<img class='img-responsive' src='images/shop/products/modal-product.jpg' alt='product-img' />
+			        			</div>
+			        		</div>
+			        		<div class='col-md-4 col-sm-6 col-xs-12'>
+			        			<div class='product-short-details'>
+			        				<h2 class='product-title'>GM Pendant, Basalt Grey</h2>
+			        				<p class='product-price'>$200</p>
+			        				<p class='product-short-description'>
+			        					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem iusto nihil cum. Illo laborum numquam rem aut officia dicta cumque.
+			        				</p>
+			        				<a href='cart.html' class='btn btn-main'>Add To Cart</a>
+			        				<a href='product-single.html' class='btn btn-transparent'>View Product Details</a>
+			        			</div>
+			        		</div>
+			        	</div>
+			        </div>
+		    	</div>
+		  	</div>
+		</div><!-- /.modal -->
+
+		</div>
+	</div>
+</section>
+
+<!--
+Start Call To Action
+==================================== -->
+<section class='call-to-action bg-gray section'>
+	<div class='container'>
+		<div class='row'>
+			<div class='col-md-12 text-center'>
+				<div class='title'>
+					<h2>KAMPANYALARDAN HABERDAR OL</h2>
+					<p>Kampanyalardan Haberdar Olmak İçin Mail Bültenimize Abone Olabilirsiniz</p>
+				</div>
+				<div class='col-lg-6 col-md-offset-3'>
+				    <div class='input-group subscription-form'>
+				      <input type='text' class='form-control' placeholder='Enter Your Email Address'>
+				      <span class='input-group-btn'>
+				        <button class='btn btn-main' type='button'>Şimdi Abone Ol!</button>
+				      </span>
+				    </div><!-- /input-group -->
+			  </div><!-- /.col-lg-6 -->
+
+			</div>
+		</div> 		<!-- End row -->
+	</div>   	<!-- End container -->
+</section>   <!-- End section -->

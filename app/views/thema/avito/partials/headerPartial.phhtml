@@ -1,0 +1,79 @@
+<?php use App\System\Application;?>
+
+
+<!-- Start Top Header Bar -->
+<section class="top-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-xs-12 col-sm-4">
+				<div class="contact-number">
+					<i class="tf-ion-ios-telephone"></i>
+					<span><a href="https://api.whatsapp.com/send?phone=05449013184">0544 901 31 84</a></span>
+				</div>
+			</div>
+			<div class="col-md-4 col-xs-12 col-sm-4">
+				<!-- Site Logo -->
+				<div class="logo text-center">
+					<a href="/">
+						<!-- replace logo here -->
+						<img src = "assets/images/KA_LOGO.svg" width="265" height="55" alt="My Happy SVG"/>
+					</a>
+				</div>
+			</div>
+			<div class="col-md-4 col-xs-12 col-sm-4">
+				<!-- Cart -->
+				<ul class="top-menu text-right list-inline">
+					<?php if(!Application::$app->auth->checkLogin()):?>
+						<li class="nav-item"><a href="login">Giriş</a></li>
+						<li class="nav-item"><a href="signup">Üye Ol</a></li>
+					<?php else:?>
+					
+						<li class="nav-item dropdown">
+							<a href="#usermenu" data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle font-weight-bold text-uppercase border-0 p-0 m-0">
+								<img width="40" height="40" src="<?php echo $_SESSION["ESCLOGIN"]["PROFILEPHOTOURL"] ?? "https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583319/AAA/3.jpg";?>" alt=""
+									class="d-block ui-w-30 rounded-circle">
+							</a>
+							<ul class="dropdown-menu">
+								<?php if (@$_SESSION["ESCLOGIN"]["rolid"]==1) {
+									echo '<li class="nav-item p-1"><a href="admin" class="nav-link">Yönetim Paneli</a></li>';
+								}?>
+								<li class="nav-item p-1"><a href="userprofile" class="nav-link">User Profile</a></li>
+								<li class="nav-item p-1"><a href="usersettings" class="nav-link">User Settings</a></li>
+								<li class="nav-item p-1"><a href="logout" class="nav-link">Logout</a></li>
+							</ul>
+						</li>
+            		<?php endif;?> 
+					<li class="dropdown cart-nav dropdown-slide">
+						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i
+								class="tf-ion-android-cart"></i>Sepet</a>
+						<div class="dropdown-menu cart-dropdown basketview">
+							<?php Application::$app->layoutClass->BasketView()?>
+							
+						</div>
+
+					</li><!-- / Cart -->
+
+					<!-- Search -->
+					<li class="dropdown search dropdown-slide">
+						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i
+								class="tf-ion-ios-search-strong"></i> Arama</a>
+						<ul class="dropdown-menu search-dropdown">
+							<li>
+								<form action="post"><input type="Ara" class="form-control" placeholder="Search..."></form>
+							</li>
+						</ul>
+					</li><!-- / Search -->
+
+					<!-- Languages -->
+					<li class="commonSelect">
+						<select class="form-control">
+							<option>TR</option>
+							<option>EN</option>
+						</select>
+					</li><!-- / Languages -->
+
+				</ul><!-- / .nav .navbar-nav .navbar-right -->
+			</div>
+		</div>
+	</div>
+</section><!-- End Top Header Bar -->

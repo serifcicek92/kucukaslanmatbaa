@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title><?php echo $this->title ?></title>
+    <meta name="description" content="<?php echo $this->description; ?>">
+    <?php //require(INCLUDEPATH . "/system/basehref.php");
+    echo BASEURL; ?>
+
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png">
+
+    <link href="plugins/jqvmap/css/jqvmap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="plugins/chartist/css/chartist.min.css">
+    <link href="plugins/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="assets/admin/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/jquery.dataTables.min.css">
+    <link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">
+
+    <!-- Partial css -->
+    <?php echo $this->CSS; ?> <?php echo $this->pluginCss ?> <?php echo $this->headerString ?>
+
+    <!-- Summernote -->
+    <link href="plugins/summernote/summernote.css" rel="stylesheet">
+</head>
+
+<body>
+    <!--*******************
+        Preloader start
+    ********************-->
+    <!-- Header Partial -->
+    <?php include INCLUDEPATH . '/app/views/thema/' . ADMINTHEMANAME . '/partials/preloaderPartial.phhtml'; ?>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+        <!--**********************************
+            Nav header start
+        ***********************************-->
+        <?php include INCLUDEPATH . '/app/views/thema/' . ADMINTHEMANAME . '/partials/navheaderPartial.phhtml'; ?>
+        <!--**********************************
+            Nav header end
+        ***********************************-->
+
+        <!--**********************************
+            Chat box start
+        ***********************************-->
+        <?php include INCLUDEPATH . '/app/views/thema/' . ADMINTHEMANAME . '/partials/chatboxPartial.phhtml'; ?>
+        <!--**********************************
+            Chat box End
+        ***********************************-->
+
+        <!--**********************************
+            Header menu start
+        ***********************************-->
+        <?php include INCLUDEPATH . '/app/views/thema/' . ADMINTHEMANAME . '/partials/headerPartial.phhtml'; ?>
+        <!--**********************************
+            Header menu end ti-comment-alt
+        ***********************************-->
+
+
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <?php include INCLUDEPATH . '/app/views/thema/' . ADMINTHEMANAME . '/partials/sidebarPartial.phhtml'; ?>
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+        
+        <!-- Content -->
+        {{Content}}
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+
+
+
+
+
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <!-- Required vendors -->
+    <script src="plugins/global/global.min.js"></script>
+    <script src="plugins/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="plugins/chart.js/Chart.bundle.min.js"></script>
+    <script src="scripts/admin/custom.min.js"></script>
+    <script src="scripts/admin/deznav-init.js"></script>
+
+    <!-- Counter Up -->
+    <script src="plugins/waypoints/jquery.waypoints.min.js"></script>
+    <script src="plugins/jquery.counterup/jquery.counterup.min.js"></script>
+
+    <!-- Apex Chart -->
+    <script src="plugins/apexchart/apexchart.js"></script>
+
+    <!-- Chart piety plugin files -->
+    <script src="plugins/peity/jquery.peity.min.js"></script>
+
+    <!-- Dashboard 1 -->
+    <script src="scripts/admin/dashboard/dashboard-1.js"></script>
+
+    <script src="scripts/jquery.dataTables.min.js"></script>
+    <script>
+        (function($) {
+
+            var table = $('#example5').DataTable({
+                searching: false,
+                paging: true,
+                select: false,
+                //info: false,         
+                lengthChange: false
+
+            });
+            $('#example tbody').on('click', 'tr', function() {
+                var data = table.row(this).data();
+
+            });
+
+        })(jQuery);
+    </script>
+    <!-- Summernote -->
+    <!-- <script src="plugins/summernote/js/summernote.min.js"></script> -->
+    <!-- Summernote init -->
+    <!-- <script src="scripts/plugins-init/summernote-init.js"></script> -->
+    <?php echo $this->pluginScripts; ?>
+    <?php echo $this->scripts; ?>
+
+</body>
+
+</html>

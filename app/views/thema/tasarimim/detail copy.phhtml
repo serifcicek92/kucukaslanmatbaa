@@ -1,0 +1,158 @@
+   <section class="container content pt-4">
+      <div class="card mb-3">
+         <div class="card-body py-3">
+            <div class="row no-gutters align-items-center">
+               <div class="d-none d-md-block col-4">
+                  <div class="row no-gutters align-items-center">
+                     <div class="media col-8 align-items-center">
+                        <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583246/AAA/2.jpg" alt=""
+                           class="d-block ui-w-30 rounded-circle">
+                        <div class="media-body flex-truncate ml-2">
+                           <div class="line-height-1 text-truncate">1 day ago</div>
+                           <a href="javascript:void(0)" class="text-muted small text-truncate" data-abc="true">by Tim
+                              cook</a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col pl-5">
+                  <h1>BAŞLIK</h1>
+                  <h2>Alt Başlık</h2>
+                  <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Modi in illo commodi sed magni veniam vero facere pariatur amet, laborum suscipit soluta nisi iste cupiditate odio eum enim omnis ullam quae hic accusamus quaerat? Vitae voluptatibus error blanditiis excepturi fugit architecto odit dolorum. Sequi perferendis dolorum ea ipsum asperiores voluptate. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint quasi temporibus, sed dolores debitis atque nam nemo velit necessitatibus suscipit!</div>
+               </div>
+            </div>
+         </div>
+         <hr class="m-0">
+         <div class="card-body py-3 ">
+            <div class="row no-gutters align-items-center">
+               <div class="d-none d-md-block col-4">
+                  <div class="row no-gutters align-items-center">
+                     <div class="col-1"><i class="fa fa-reply-all"></i></div>
+                     <div class="media col-8 align-items-center opacity-2 ">
+                        <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583319/AAA/3.jpg" alt=""
+                           class="d-block ui-w-30 rounded-circle">
+                        <div class="media-body flex-truncate ml-2">
+                           <div class="line-height-1 text-truncate text-muted">1 day ago</div>
+                           <a href="javascript:void(0)" class="text-muted small text-truncate" data-abc="true">by Steve
+                              smith</a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-1"></div>
+               <div class="col text-muted">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, magnam earum voluptatibus perferendis quam blanditiis illum alias dolorem repellendus architecto.
+               </div>
+            </div>
+         </div>
+         <div class="card-body py-3">
+            <div class="row no-gutters align-items-center">
+               <div class="d-none d-md-block col-4">
+                  <div class="row no-gutters align-items-center">
+                     <div class="media col-8 align-items-center">
+                        <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583319/AAA/3.jpg" alt=""
+                           class="d-block ui-w-30 rounded-circle">
+                        <div class="media-body flex-truncate ml-2">
+                           <div class="line-height-1 text-truncate">1 day ago</div>
+                           <a href="javascript:void(0)" class="text-muted small text-truncate" data-abc="true">by Steve
+                              smith</a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col">
+                  bu öncekine cevap olsun  Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, magnam earum voluptatibus perferendis quam blanditiis illum alias dolorem repellendus architecto.
+               </div>
+            </div>
+            <div class="row">
+               <div class="col">
+                  <a href="" class="reply">Reply</a>
+               </div>
+            </div>
+         </div>
+         <hr class="m-0">
+         <div class="card-body py-3">
+            <div class="row no-gutters align-items-center">
+               <div class="d-none d-md-block col-4">
+                  <div class="row no-gutters align-items-center">
+                     <div class="media col-8 align-items-center">
+                        <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583319/AAA/3.jpg" alt=""
+                           class="d-block ui-w-30 rounded-circle">
+                        <div class="media-body flex-truncate ml-2">
+                           <div class="line-height-1 text-truncate">1 day ago</div>
+                           <a href="javascript:void(0)" class="text-muted small text-truncate" data-abc="true">by Steve
+                              smith</a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, magnam earum voluptatibus perferendis quam blanditiis illum alias dolorem repellendus architecto.
+               </div>
+            </div>
+            <div class="row">
+               <div class="col">
+                  <a href="" class="reply">Reply</a>
+               </div>
+            </div>
+         </div>
+         <hr class="m-0">
+         <div class="card-body py-3">
+            <div class="row no-gutters align-items-center">
+               <div class="d-none d-md-block col-4">
+                  <div class="row no-gutters align-items-center">
+                     <div class="media col-8 align-items-center">
+                        <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583319/AAA/3.jpg" alt=""
+                           class="d-block ui-w-30 rounded-circle">
+                        <div class="media-body flex-truncate ml-2">
+                           <div class="line-height-1 text-truncate">1 day ago</div>
+                           <a href="javascript:void(0)" class="text-muted small text-truncate" data-abc="true">by Steve
+                              smith</a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, magnam earum voluptatibus perferendis quam blanditiis illum alias dolorem repellendus architecto.
+               </div>
+            </div>
+            <div class="row">
+               <div class="col">
+                  <a href="" class="reply">Reply</a>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col">
+                  <div class="pt-5 pl-2">
+                     <h5>Add Comment</h5>
+                  </div>
+                  <div class="p-2">
+                     <div class="p-0 container">
+                         <div class="editor"></div>
+                     </div>                      
+                 </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <nav>
+         <ul class="pagination mb-5">
+            <li class="page-item disabled"><a class="page-link" href="javascript:void(0)" data-abc="true">&laquo;</a>
+            </li>
+            <li class="page-item active"><a class="page-link" href="javascript:void(0)" data-abc="true">1</a></li>
+            <li class="page-item"><a class="page-link" href="javascript:void(0)" data-abc="true">2</a></li>
+            <li class="page-item"><a class="page-link" href="javascript:void(0)" data-abc="true">3</a></li>
+            <li class="page-item"><a class="page-link" href="javascript:void(0)" data-abc="true">&raquo;</a></li>
+         </ul>
+      </nav>
+   </section>

@@ -1,0 +1,36 @@
+<section class="signin-page account">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="block text-center">
+          <a class="logo" href="index.html">
+            <img src="images/logo.png" alt="">
+          </a>
+          <h2 class="text-center">Hoş Geldiniz</h2>
+          <form class="text-left clearfix" action="login" method="post">
+            <div class="form-group">
+              <input name="email" type="email" class="form-control"  placeholder="Email">
+            </div>
+            <div class="form-group">
+              <input name="password" type="password" class="form-control" placeholder="parola">
+            </div>
+            <div class="form-check">
+              <input name="remember" class="form-check-input" type="checkbox" data-toggle="toggle" id="flexCheckDefault">
+              <label class="form-check-label" for="flexCheckDefault">
+                Beni hatırla
+              </label>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-main text-center" >Giriş</button>
+            </div>
+          </form>
+          <?php  if (@$model->getErrorMessage()!="") {
+                          echo '<div class="p-3 mb-2 bg-danger text-white">'.addslashes(@$model->getErrorMessage()).'</div>';
+                    }
+                         ?>
+          <p class="mt-20">Üyeliğiniz yokmu ?<a href="signin.html">Yeni hesap oluşturun.</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,315 @@
+   <section class="container">
+      <div class="row">
+         <div class="col">
+            <?php
+
+               use App\System\Application;
+
+            setlocale(LC_TIME,'turkish');
+            $treeString="";
+            foreach (array_reverse($parentList) as $menu) {
+               $treeString .= "<a href='kategori/".$menu["link"]."'>".$menu["ADI"]."</a>->";
+            }
+            echo rtrim($treeString,"->");
+            ?>
+         </div>
+      </div>
+   </section>
+   <section class="container pl-0 pr-0 content pt-4">
+      <div class="card mb-3">
+         <div class="card-body py-3">
+            <div class="row no-gutters align-items-center">
+               <div class="d-none d-md-block col-4">
+                  <div class="row no-gutters align-items-center">
+                     <div class="media col-8 align-items-center">
+                        <img src="<?php echo $model->pictureurl ?? "https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583246/AAA/2.jpg";?>" alt=""
+                           class="d-block ui-w-30 rounded-circle">
+                        <div class="media-body flex-truncate ml-2">
+                           <div class="line-height-1 text-truncate"><?php echo iconv('latin5','utf-8',strftime('%d %b %Y',strtotime($model->eklemezamani))); ?></div>
+                           <a href="javascript:void(0)" class="text-muted small text-truncate" data-abc="true">by <?php echo $model->kullanici; ?></a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <?php if (Application::$app->auth->checkLogin()) {
+                  if ($_SESSION["ESCLOGIN"]["USERID"]==$model->ekleyenid) {?>
+                     <div class="row justify-content-end">
+                        <div class="col mr-auto text-right">
+                           <a href="editsubject/<?php echo $model->url."?token=".base64_encode(($model->ekleyenid*99)."editleme"); ?>">Düzenle</a>
+                        </div>
+                     </div>
+            <?php 
+                  }
+            }?>
+            
+            <div class="row">
+               <div class="col pl-5">
+                  <h1><?php echo $model->title?></h1>
+                  <h2><?php echo $model->subtitle?></h2>
+                  <div>
+                     <?php 
+                        // $cont =  htmlspecialchars_decode(str_replace("&lt;code&gt;","@{{/}}",str_replace("&lt;/code&gt;","@{{}}@",$model->content)),ENT_QUOTES);
+                        // echo str_replace("@{{/}}","</code>",str_replace("@{{}}@","<code>",$cont));
+                     // echo htmlspecialchars_decode($model->content,ENT_NOQUOTES)
+                     echo html_entity_decode($model->content)
+                     
+                     ?>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <hr class="m-0">
+         <!-- reply -->
+         <!-- <div class="card-body py-3 ">
+            <div class="row no-gutters align-items-center">
+               <div class="d-none d-md-block col-4">
+                  <div class="row no-gutters align-items-center">
+                     <div class="col-1"><i class="fa fa-reply-all"></i></div>
+                     <div class="media col-8 align-items-center opacity-2 ">
+                        <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583319/AAA/3.jpg" alt=""
+                           class="d-block ui-w-30 rounded-circle">
+                        <div class="media-body flex-truncate ml-2">
+                           <div class="line-height-1 text-truncate text-muted">1 day ago</div>
+                           <a href="javascript:void(0)" class="text-muted small text-truncate" data-abc="true">by Steve
+                              smith</a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-1"></div>
+               <div class="col text-muted">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, magnam earum voluptatibus perferendis quam blanditiis illum alias dolorem repellendus architecto.
+               </div>
+            </div>
+         </div> -->
+         <!-- comments -->
+         <?php 
+            $yorumlar = array_filter($comments,function($val){
+               if($val['commentref'] == 0)
+                  return $val;
+            });
+            
+            // var_dump($yorumlar);
+            // echo "cevaplar";
+            // var_dump($cevaplar);
+         foreach ($yorumlar as $yorum):
+         ?>
+         <div class="card-body py-3">
+            <div class="row no-gutters align-items-center">
+               <div class="d-none d-md-block col-4">
+                  <div class="row no-gutters align-items-center">
+                     <div class="media col-8 align-items-center">
+                        <img src="<?php echo $yorum["pictureurl"] ?? "https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583246/AAA/3.jpg";?>" alt=""
+                           class="d-block ui-w-30 rounded-circle">
+                        <div class="media-body flex-truncate ml-2">
+                           <div class="line-height-1 text-truncate"><?php echo iconv('latin5','utf-8',strftime('%d %b %Y',strtotime($yorum["eklemezamani"]))); ?></div>
+                           <a href="javascript:void(0)" class="text-muted small text-truncate namesurmane" data-abc="true">by <?php echo $yorum["kullanici"]; ?></a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col">
+                  <?php echo $yorum["content"];?>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col">
+                  <a href="" class="reply" data-commentref="1" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Reply</a>
+               </div>
+            </div>
+         </div>
+         <?php 
+            $cevaplar = array_filter($comments,function($val) use ($yorum){
+            if($val['commentref'] == $yorum["id"])
+               return $val;
+            });
+            foreach ($cevaplar as $cevap):
+         ?>
+            <div class="card-body py-3 ">
+               <div class="row no-gutters align-items-center">
+                  <div class="d-none d-md-block col-4">
+                     <div class="row no-gutters align-items-center">
+                        <div class="col-1"><i class="fa fa-reply-all"></i></div>
+                        <div class="media col-8 align-items-center opacity-2 ">
+                           <img src="<?php echo $cevap["pictureurl"] ?? "https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583246/AAA/3.jpg";?>" alt=""
+                              class="d-block ui-w-30 rounded-circle">
+                           <div class="media-body flex-truncate ml-2">
+                              <div class="line-height-1 text-truncate text-muted"><?php echo iconv('latin5','utf-8',strftime('%d %b %Y',strtotime($cevap["eklemezamani"]))); ?></div>
+                              <a href="javascript:void(0)" class="text-muted small text-truncate" data-abc="true">by <?php echo $cevap["kullanici"]; ?></a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-1"></div>
+                  <div class="col text-muted">
+                  <?php echo $cevap["content"];?>
+                  </div>
+               </div>
+            </div>
+            <?php endforeach;?>
+         <hr class="m-0">
+         <?php endforeach;?>
+         <div class="card-body py-3">
+            <div class="row">
+               <div class="col">
+                  <div class="pt-5 pl-2">
+                     <h5>Add Comment</h5>
+                  </div>
+                  <div class="p-2">
+                     <?php if(Application::$app->auth->checkLogin()):?>
+                     <div class="p-0 container">
+                        <!-- wysyng -->
+                         <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
+                              <div class="btn-group">
+                              <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font"><i class="icon-font"></i><b class="caret"></b></a>
+                                 <ul class="dropdown-menu">
+                                 </ul>
+                              </div>
+                              <div class="btn-group">
+                              <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font Size"><i class="icon-text-height"></i>&nbsp;<b class="caret"></b></a>
+                                 <ul class="dropdown-menu">
+                                 <li><a data-edit="fontSize 5"><font size="5">Huge</font></a></li>
+                                 <li><a data-edit="fontSize 3"><font size="3">Normal</font></a></li>
+                                 <li><a data-edit="fontSize 1"><font size="1">Small</font></a></li>
+                                 </ul>
+                              </div>
+                              <div class="btn-group">
+                              <a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="icon-bold"></i></a>
+                              <a class="btn" data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="icon-italic"></i></a>
+                              <a class="btn" data-edit="strikethrough" title="Strikethrough"><i class="icon-strikethrough"></i></a>
+                              <a class="btn" data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i class="icon-underline"></i></a>
+                              </div>
+                              <div class="btn-group">
+                              <a class="btn" data-edit="insertunorderedlist" title="Bullet list"><i class="icon-list-ul"></i></a>
+                              <a class="btn" data-edit="insertorderedlist" title="Number list"><i class="icon-list-ol"></i></a>
+                              <a class="btn" data-edit="outdent" title="Reduce indent (Shift+Tab)"><i class="icon-indent-left"></i></a>
+                              <a class="btn" data-edit="indent" title="Indent (Tab)"><i class="icon-indent-right"></i></a>
+                              </div>
+                              <div class="btn-group">
+                              <a class="btn" data-edit="justifyleft" title="Align Left (Ctrl/Cmd+L)"><i class="icon-align-left"></i></a>
+                              <a class="btn" data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i class="icon-align-center"></i></a>
+                              <a class="btn" data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i class="icon-align-right"></i></a>
+                              <a class="btn" data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i class="icon-align-justify"></i></a>
+                              </div>
+                              <div class="btn-group">
+                              <a class="btn dropdown-toggle" data-toggle="dropdown" title="Hyperlink"><i class="icon-link"></i></a>
+                                 <div class="dropdown-menu input-append">
+                                    <input class="span2" placeholder="URL" type="text" data-edit="createLink"/>
+                                    <button class="btn" type="button">Add</button>
+                              </div>
+                              <a class="btn" data-edit="unlink" title="Remove Hyperlink"><i class="icon-cut"></i></a>
+
+                              </div>
+                              
+                              <div class="btn-group">
+                              <a class="btn" title="Insert picture (or just drag & drop)" id="pictureBtn"><i class="icon-picture"></i></a>
+                              <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" />
+                              </div>
+                              <div class="btn-group">
+                              <a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="icon-undo"></i></a>
+                              <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="icon-repeat"></i></a>
+                              </div>
+                              <input type="text" data-edit="inserttext" id="voiceBtn" x-webkit-speech="">
+                           </div>
+                           <div id="editor">
+                              
+                           </div>
+                           <form action="" method="POST">
+                              <textarea name="content" id="editorcontent" class="d-none"></textarea>
+                              <button type="submit"> Yorumu Ekle</button>
+                           </form>
+                     </div>                      
+                     <?php else :
+                        echo '<div class="row">
+                        <div class="col">
+                        Yorum yazmak için lütfen üye olunuz
+                        </div>
+                        </div>';
+                     endif;?>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <nav>
+         <ul class="pagination mb-5">
+            
+            <li class="page-item disabled"><a class="page-link" href="javascript:void(0)" data-abc="true">&laquo;</a>
+            </li>
+            <?php 
+               $sayfa = $_GET["sayfa"] ?? 1;
+               for ($i=1; $i <= $sayfasayisi ; $i++) { 
+            ?>
+               <li class="page-item <?php echo $sayfa == $i ? "active" : ""; ?>"><a class="page-link" href="subject/<?php echo $model->url."?sayfa=".$i;?>" data-abc="true"><?php echo $i;?></a></li>
+           <?php }?> 
+         </ul>
+      </nav>
+   </section>
+
+
+   <!-- modal popup -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Mesajı Yanıtla</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <?php if(Application::$app->auth->checkLogin()):?>
+        <form method="POST" id="modalForm">
+        <div class="card-body py-3">
+            <div class="row no-gutters align-items-center">
+               <div class="col-1"><i class="fa fa-reply-all"></i></div>
+               <div class="media col-8 align-items-center opacity-2 ">
+                  <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583319/AAA/3.jpg" alt="" class="d-block ui-w-30 rounded-circle">
+                  <div class="media-body flex-truncate ml-2">
+                     <a href="javascript:void(0)" class="text-muted small text-truncate" data-abc="true" id="modalnamesurname">by Steve
+                        smith ' e yanıt ver</a>
+                  </div>
+               </div>
+            </div>
+            <div class="row no-gutters align-items-center">
+               <div class="d-none d-md-block col-4">
+                  <div class="row no-gutters align-items-center">
+                     <div class="media col-8 align-items-center">
+                        <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583319/AAA/3.jpg" alt="" class="d-block ui-w-30 rounded-circle">
+                        <div class="media-body flex-truncate ml-2">
+                           <a href="javascript:void(0)" class="text-muted small text-truncate" data-abc="true"> adı soyadı kullanıcının</a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="form-group d-none">
+         <label for="recipient-name" class="col-form-label">Recipient:</label>
+         <input name="commentref" id="commentref" type="text" class="form-control">
+         </div>
+
+         <div class="form-group">
+         <label for="message-text" class="col-form-label">Yanıt:</label>
+         <textarea name="content" class="form-control" id="message-text"></textarea>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+            <button type="submit" class="btn btn-primary">Tamam</button>
+         </div>
+        </form>
+         <?php else:
+         echo "Yorum yapmak için lütfen üye girişi yapınız";
+            endif;?>
+      </div>
+      
+    </div>
+  </div>
+</div>

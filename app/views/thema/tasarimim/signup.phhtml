@@ -1,0 +1,49 @@
+<section id="content" class="container mt-4">
+       <div class="page-content page-container" id="page-content">
+          <div class="padding">
+             <div class="row">
+                <div class="col-md-12">
+                   <div class="card">
+                      <div class="card-header"><strong>Üye Ol</strong></div>
+                      <div class="card-body">
+                         <form method="post">
+                           <div class="form-group"><label class="text-muted" for="name">İsim</label><input type="text" name="name" class="form-control <?php echo $model->hasError('name') ? 'is-invalid' : ''?>" id="name" placeholder="Adınızı Giriniz"><div class="invalid-feedback">Adınızı Giriniz</div>  </div> 
+                           <div class="form-group"><label class="text-muted" for="surname">Soyisim</label><input type="text" name="surname" class="form-control <?php echo $model->hasError('surname') ? 'is-invalid' : ''?>" id="surname" placeholder="Soyadınızı giriniz"> <div class="invalid-feedback">Soyadınızı Giriniz</div></div> 
+                           <div class="form-group"><label class="text-muted" for="birthday">Doğum Tarihi</label><input type="date" name="birthday" class="form-control <?php echo $model->hasError('birthday') ? 'is-invalid' : ''?>" id="birthday" placeholder="Doğum Tarihi"> <div class="invalid-feedback">Doğum tarihinizi Giriniz</div></div> 
+                           <div class="form-group">
+                                <label class="my-1 mr-2" for="sex">Cinsiyet</label>
+                                <select name="sex" class="custom-select my-1 mr-sm-2  <?php echo $model->hasError('sex') ? 'is-invalid' : ''?>" id="sex">
+                                    <option value="0">Seçiniz</option>
+                                    <option value="1">Erkek</option>
+                                    <option value="2">Kadın</option>
+                                    <option value="3">Belirtmek İstemiyorum</option>
+                                </select>
+                            </div>
+                            <div class="form-group"><label class="text-muted" for="email">Email adres</label><input type="email" name="email" class="form-control <?php echo $model->hasError('email') ? 'is-invalid' : ''?>" id="email" aria-describedby="emailHelp" placeholder="Email adres"> <div class="invalid-feedback">Email adresinizi giriniz</div></div>
+                            <div class="form-group"><label class="text-muted" for="password">Şifreniz</label><input type="password" name="password" class="form-control <?php echo $model->hasError('password') ? 'is-invalid' : ''?>" id="password" placeholder="Şifreniz"> <div class="invalid-feedback">Şifre en az 8 karakter olmalı</div></div>
+                            <div class="form-group"><label class="text-muted" for="repassword">Şifreniz Tekrar</label><input type="password" name="repassword" class="form-control <?php echo $model->hasError('repassword') ? 'is-invalid' : ''?>" id="repassword" placeholder="Şifreniz (Tekrar)"> <div class="invalid-feedback">Şifreniz Eşleşmeli</div></div>
+                            <div class="form-group">
+                               <div class="form-check"><input type="checkbox" name="contractvalid" class="form-check-input <?php echo $model->hasError('contractvalid') ? 'is-invalid' : ''?>"><label class="form-check-label">Girilen kişisel bilgilerimin saklanmasını onaylıyorum.</label></div>
+                            </div>
+                            <div class="form-group p-2">
+                                <div class="p-0 container">
+                                    <div class="editor"></div>
+                                </div>                      
+                            </div>
+                            <button type="submit" class="btn btn-primary">Üye Ol</button>
+                         </form>
+                         <?php 
+                         if (@$success == "true") {
+                           echo '<div class="p-3 mb-2 bg-success text-white">Kayıt Başarılı Lütfen mailinizdeki onay linkinden mail adresinizi onaylayınız.</div>';
+                         }
+                         if (@$errorMessage!="") {
+                           echo '<div class="p-3 mb-2 bg-danger text-white">'.addslashes(@$errorMessage).'</div>';
+                         }
+                         ?>
+                      </div>
+                   </div>
+                </div>
+             </div>
+       </div>
+    </div>
+</section>

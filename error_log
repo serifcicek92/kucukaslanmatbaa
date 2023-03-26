@@ -1,0 +1,35 @@
+[31-Aug-2022 22:31:54 UTC] PHP Warning:  Undefined array key "visitip" in /home/ifqesche/public_html/app/controllers/AuthController.php on line 322
+[31-Aug-2022 22:31:54 UTC] PHP Warning:  Undefined array key "page" in /home/ifqesche/public_html/app/controllers/AuthController.php on line 322
+[28-Sep-2022 18:02:46 UTC] PHP Warning:  Attempt to read property "categoriid" on bool in /home/ifqesche/public_html/app/controllers/SubjectController.php on line 33
+[28-Sep-2022 18:02:46 UTC] PHP Warning:  Attempt to read property "title" on bool in /home/ifqesche/public_html/app/controllers/SubjectController.php on line 34
+[28-Sep-2022 18:02:46 UTC] PHP Warning:  Attempt to read property "subtitle" on bool in /home/ifqesche/public_html/app/controllers/SubjectController.php on line 35
+[28-Sep-2022 18:02:46 UTC] PHP Warning:  Attempt to read property "ID" on bool in /home/ifqesche/public_html/app/controllers/SubjectController.php on line 82
+[28-Sep-2022 18:02:46 UTC] PHP Warning:  Attempt to read property "ID" on bool in /home/ifqesche/public_html/app/controllers/SubjectController.php on line 83
+[28-Sep-2022 18:02:47 UTC] PHP Warning:  Attempt to read property "eklemezamani" on bool in /home/ifqesche/public_html/app/views/thema/tasarimim/detail.phhtml on line 28
+[28-Sep-2022 18:02:47 UTC] PHP Warning:  Attempt to read property "kullanici" on bool in /home/ifqesche/public_html/app/views/thema/tasarimim/detail.phhtml on line 29
+[28-Sep-2022 18:02:47 UTC] PHP Warning:  Attempt to read property "ekleyenid" on bool in /home/ifqesche/public_html/app/views/thema/tasarimim/detail.phhtml on line 36
+[28-Sep-2022 18:02:47 UTC] PHP Warning:  Attempt to read property "title" on bool in /home/ifqesche/public_html/app/views/thema/tasarimim/detail.phhtml on line 48
+[28-Sep-2022 18:02:47 UTC] PHP Warning:  Attempt to read property "subtitle" on bool in /home/ifqesche/public_html/app/views/thema/tasarimim/detail.phhtml on line 49
+[28-Sep-2022 18:02:47 UTC] PHP Warning:  Attempt to read property "content" on bool in /home/ifqesche/public_html/app/views/thema/tasarimim/detail.phhtml on line 50
+[03-Oct-2022 08:59:07 UTC] PHP Warning:  Attempt to read property "categoriid" on bool in /home/ifqesche/public_html/app/controllers/SubjectController.php on line 33
+[03-Oct-2022 08:59:07 UTC] PHP Warning:  Attempt to read property "title" on bool in /home/ifqesche/public_html/app/controllers/SubjectController.php on line 34
+[03-Oct-2022 08:59:07 UTC] PHP Warning:  Attempt to read property "subtitle" on bool in /home/ifqesche/public_html/app/controllers/SubjectController.php on line 35
+[03-Oct-2022 08:59:07 UTC] PHP Warning:  Attempt to read property "ID" on bool in /home/ifqesche/public_html/app/controllers/SubjectController.php on line 92
+[03-Oct-2022 08:59:07 UTC] PHP Warning:  Attempt to read property "ID" on bool in /home/ifqesche/public_html/app/controllers/SubjectController.php on line 93
+[03-Oct-2022 08:59:07 UTC] PHP Warning:  Attempt to read property "eklemezamani" on bool in /home/ifqesche/public_html/app/views/thema/tasarimim/detail.phhtml on line 28
+[03-Oct-2022 08:59:07 UTC] PHP Warning:  Attempt to read property "kullanici" on bool in /home/ifqesche/public_html/app/views/thema/tasarimim/detail.phhtml on line 29
+[03-Oct-2022 08:59:07 UTC] PHP Warning:  Attempt to read property "ekleyenid" on bool in /home/ifqesche/public_html/app/views/thema/tasarimim/detail.phhtml on line 36
+[03-Oct-2022 08:59:07 UTC] PHP Warning:  Attempt to read property "title" on bool in /home/ifqesche/public_html/app/views/thema/tasarimim/detail.phhtml on line 48
+[03-Oct-2022 08:59:07 UTC] PHP Warning:  Attempt to read property "subtitle" on bool in /home/ifqesche/public_html/app/views/thema/tasarimim/detail.phhtml on line 49
+[03-Oct-2022 08:59:07 UTC] PHP Warning:  Attempt to read property "content" on bool in /home/ifqesche/public_html/app/views/thema/tasarimim/detail.phhtml on line 55
+[03-Oct-2022 08:59:31 UTC] PHP Warning:  Attempt to read property "categoriid" on bool in /home/ifqesche/public_html/app/controllers/SubjectController.php on line 33
+[03-Oct-2022 08:59:31 UTC] PHP Warning:  Attempt to read property "title" on bool in /home/ifqesche/public_html/app/controllers/SubjectController.php on line 34
+[03-Oct-2022 08:59:31 UTC] PHP Warning:  Attempt to read property "subtitle" on bool in /home/ifqesche/public_html/app/controllers/SubjectController.php on line 35
+[03-Oct-2022 08:59:31 UTC] PHP Warning:  Attempt to read property "ID" on bool in /home/ifqesche/public_html/app/controllers/SubjectController.php on line 92
+[03-Oct-2022 08:59:31 UTC] PHP Warning:  Attempt to read property "ID" on bool in /home/ifqesche/public_html/app/controllers/SubjectController.php on line 93
+[03-Oct-2022 08:59:31 UTC] PHP Warning:  Attempt to read property "eklemezamani" on bool in /home/ifqesche/public_html/app/views/thema/tasarimim/detail.phhtml on line 28
+[03-Oct-2022 08:59:31 UTC] PHP Warning:  Attempt to read property "kullanici" on bool in /home/ifqesche/public_html/app/views/thema/tasarimim/detail.phhtml on line 29
+[03-Oct-2022 08:59:31 UTC] PHP Warning:  Attempt to read property "ekleyenid" on bool in /home/ifqesche/public_html/app/views/thema/tasarimim/detail.phhtml on line 36
+[03-Oct-2022 08:59:31 UTC] PHP Warning:  Attempt to read property "title" on bool in /home/ifqesche/public_html/app/views/thema/tasarimim/detail.phhtml on line 48
+[03-Oct-2022 08:59:31 UTC] PHP Warning:  Attempt to read property "subtitle" on bool in /home/ifqesche/public_html/app/views/thema/tasarimim/detail.phhtml on line 49
+[03-Oct-2022 08:59:31 UTC] PHP Warning:  Attempt to read property "content" on bool in /home/ifqesche/public_html/app/views/thema/tasarimim/detail.phhtml on line 55

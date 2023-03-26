@@ -1,0 +1,117 @@
+<?php
+
+use App\System\Application;
+
+$images = explode(',', $model->imagelist);
+?>
+<section class="single-product">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<ol class="breadcrumb">
+					<li><a href="/">Anasayfa</a></li>
+					<li><a href="shop/<?php echo $model->catseourl;?>"><?php echo $model->categoryname?></a></li>
+					<li class="active"><?php echo $model->seourl;?></li>
+				</ol>
+			</div>
+			<!-- <div class="col-md-6">
+				<ol class="product-pagination text-right">
+					<li><a href="blog-left-sidebar.html"><i class="tf-ion-ios-arrow-left"></i> Next </a></li>
+					<li><a href="blog-left-sidebar.html">Preview <i class="tf-ion-ios-arrow-right"></i></a></li>
+				</ol>
+			</div> -->
+		</div>
+		<div class="row mt-20">
+			<div class="col-md-5">
+				<div class="single-product-slider">
+					<div id='carousel-custom' class='carousel slide' data-ride='carousel'>
+						<div class='carousel-outer'>
+							<!-- me art lab slider -->
+							<div class='carousel-inner '>
+								<?php 
+								for ($i=0; $i < count($images); $i++) {
+									echo "<div class='item ".($i == 0 ? "active" : "")."'>
+												<img src='assets/images/products/{$images[$i]}' alt='' data-zoom-image='assets/images/products/{$images[$i]}' />
+											</div>";
+								}
+								?>
+								
+							</div>
+
+							<!-- sag sol -->
+							<a class='left carousel-control' href='#carousel-custom' data-slide='prev'>
+								<i class="tf-ion-ios-arrow-left"></i>
+							</a>
+							<a class='right carousel-control' href='#carousel-custom' data-slide='next'>
+								<i class="tf-ion-ios-arrow-right"></i>
+							</a>
+							
+						</div>
+						
+						<!-- thumb -->
+						<ol class='carousel-indicators mCustomScrollbar meartlab'>
+							<?php 
+								for ($i=0; $i < count($images); $i++) {
+									echo "<li data-target='#carousel-custom' data-slide-to='{$i}' ".($i == 0 ? "class='active'" : "")."'>
+												<img src='assets/images/products/thump_{$images[$i]}' alt='' />
+											</li>";
+								}
+								?>
+							<li data-target='#carousel-custom' data-slide-to='0' class='active'>
+								<img src='images/shop/single-products/product-1.jpg' alt='' />
+							</li>
+							
+						</ol>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-7">
+				<div class="single-product-details">
+					<h2><?php echo $model->name?></h2>
+					<p class="product-price">TL <?php echo $model->prices?></p>
+					
+					<p class="product-description mt-20">
+						<?php echo $model->content?>
+					</p>
+						<?php 
+						if (Application::$app->auth->checkLogin()) {
+							echo '<a href="" onclick="" class="btn btn-main mt-20 addbtn" data-product="'.$model->id.'">Sepete Ekle</a>';
+						}else{
+							echo '<p> Sepete ürün eklemek için <b>üye olmanız gerekmektedir.</b></p>
+							<p>Eğer üye iseniz giriş yapabilirsiniz.<p>';
+							echo '<a href="/login" onclick="" class="btn btn-main mt-20">Giriş Yap</a> <br>';
+							echo '<a href="/signup" onclick="" class="btn btn-main mt-20">Üye Ol</a>';
+
+						}
+						?>
+						
+						<div class="alert alert-success fade alertdialog" role="alert">
+							Ürün Sepete Eklendi <a href="checkout">Sepete Git</a>
+						</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</section>
+
+
+
+<script>
+	const addcardbtn = document.querySelector(".addbtn");
+	addcardbtn.addEventListener("click",function(e){
+		e.preventDefault();
+		const product = addcardbtn.dataset.product;
+		const formdata = new FormData();
+		formdata.append("productid",product);
+		SendXMLHttpRequest(formdata,"/addbasket",function handle(returnStr, status){
+			if (returnStr.trim()==1) {
+				console.log("başarılı");
+				document.querySelector(".alertdialog").classList.remove("fade");
+				SendXMLHttpRequest(null,"/basketview",function handle(returnStr,status) {
+					document.querySelector(".basketview").innerHTML = returnStr;
+				});
+			}
+		});
+	});
+</script>

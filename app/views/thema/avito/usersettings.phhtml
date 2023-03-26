@@ -1,0 +1,37 @@
+<section class="user-dashboard page-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <?php require_once INCLUDEPATH . '/app/views/thema/avito/partials/userprofilemenuPartials.phhtml'; ?>
+                <div class="dashboard-wrapper dashboard-user-profile">
+                    <div class="media">
+                        <div class="pull-left text-center" href="#!">
+                            <img class="media-object user-img" src="images/avater.jpg" alt="Image">
+                            <a href="#x" class="btn btn-transparent mt-20">Change Image</a>
+                        </div>
+                        <div class="media-body">
+                            <div class="d-flex justify-content-end text-right">
+                                <a href="/usersettings" class="btn btn-danger">Reset Password</a>
+                            </div>
+                            <h2 class="text-center">mail.mail.com</h2>
+                            <form class="text-left clearfix" action="" method="post">
+                                <div class="form-group">
+                                    <input name="name" type="text" class="form-control" placeholder="Adınız">
+                                </div>
+                                <div class="form-group">
+                                    <input name="surname" type="text" class="form-control" placeholder="Soyadınız">
+                                </div>
+                                <div class="form-group">
+                                    <textarea name="adress" id="adress" cols="30" rows="10" placeholder="adres"></textarea>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-main text-center">Bilgileri Güncelle</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

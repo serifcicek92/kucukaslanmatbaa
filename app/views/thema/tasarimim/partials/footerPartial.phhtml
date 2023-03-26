@@ -1,0 +1,29 @@
+<!-- footer -->
+<div class="container">
+      <output class="bg-white shadow-sm">
+         <footer class="border-top">
+            <div class="container-fluid">
+               <section class="footer-top padding-y">
+                  <div class="row">
+                     <aside class="col-sm-6 col-md-6">
+                     <h5>ESC Helping</h5>   
+                     <span>ESC Helping Hangi konuda olursa olsun konu açabileceğiniz, soru sorabileceğiniz yardımlaşma, dayanışma, bilgi alışverişi için kurulmuştur.</span>
+
+                     </aside>
+                     <aside class="col-sm-6 col-md-6">
+                        <ul class="list-unstyled">
+                           <li> <a href="anasayfa" data-abc="true">Anasayfa</a></li>
+                        </ul>
+                     </aside>
+                     
+                  </div>
+               </section>
+               <section class="footer-copyright border-top">
+                  <p class="float-left text-muted"> &copy; 2022 Şerif ÇİÇEK All rights reserved </p>
+                  <p target="_blank" class="float-right text-muted"> <a href="privact" data-abc="true">Privacy &amp;
+                        - Cookies</a> &nbsp; &nbsp; <a href="#" data-abc="true">Accessibility</a> </p>
+               </section>
+            </div>
+         </footer>
+      </output>
+   </div>

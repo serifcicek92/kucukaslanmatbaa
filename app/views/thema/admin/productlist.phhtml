@@ -1,0 +1,116 @@
+        <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Ürünler</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-responsive-md">
+                                        <thead>
+                                            <tr>
+                                                <!-- <th style="width:50px;">
+													<div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
+														<input type="checkbox" class="custom-control-input" id="checkAll" required="">
+														<label class="custom-control-label" for="checkAll"></label>
+													</div>
+												</th> -->
+                                                <th></th>
+                                                <th><strong>Kodu</strong></th>
+                                                <th><strong>Adı</strong></th>
+                                                <th><strong>Fiyatı</strong></th>
+                                                <th><strong>Kategori Adı</strong></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            foreach ($model as $item) :
+                                            ?>
+                                                <tr>
+                                                    <!-- <td>
+													<div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
+														<input type="checkbox" class="custom-control-input" id="customCheckBox<?php echo $item->id ?>" required="">
+														<label class="custom-control-label" for="customCheckBox2"></label>
+													</div>
+												</td> -->
+                                                    <td>
+                                                        <div class="d-flex align-items-center"><img src="assets/images/products/<?php echo $item->imagepath ?>" class="rounded-lg mr-2" width="24" alt=""> <!--<span class="w-space-no">Dr. Jackson</span>--></div>
+                                                    </td>
+                                                    <td><strong><?php echo $item->code ?></strong></td>
+                                                    <td><?php echo $item->name ?> </td>
+                                                    <td><?php echo $item->prices ?></td>
+                                                    <td><?php echo $item->categoryname ?></td>
+                                                    <td>
+                                                        <div class="d-flex">
+                                                            <a href="admin/productedit/<?php echo $item->id ?>" target="_blank" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
+                                                            <a href="admin/productdelete/<?php echo $item->id ?>" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer text-muted">
+                                <div class="row justify-content-between">
+                                    <div class="col-sm-3">
+                                        <div class="d-flex">
+                                            <div class="dropdown">
+                                                <a href="#" data-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fa fa-bars text-primary mr-2"></i>
+                                                </a>
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li class="dropdown-item"><a href="excel/export?obj=product"><i class="fa fa-file-excel-o"></i> Dışarıya Aktar (Excel)</a></li>
+                                                    <li class="dropdown-item"><a href="pdf/<?php echo $item->id ?>"><i class="fa fa-file-pdf-o"></i> Dışarıya Aktar (PDF)</a></li>
+                                                    <li class="dropdown-item"><a onclick="javascript:document.querySelector('#excelfile').click()"><i class="fa fa-file-pdf-o"></i> Excelden ürünleri aktar</a></li>
+                                                    <li class="dropdown-item"><a href="pdf/<?php echo $item->id ?>"><i class="fa fa-file-pdf-o"></i> Excelden fiyat güncelle</a></li>
+                                                </ul>
+                                            </div>
+                                            <input type="file" name="excelfile" id="excelfile" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" multiple hidden />
+                                            <!-- <a href="admin/excel/<?php echo $item->id ?>" class="btn btn-success shadow btn-xs sharp mr-1"><i class="fa fa-file-excel-o"></i></a> -->
+                                            <!-- <a href="admin/pdf/<?php echo $item->id ?>" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-file-pdf-o"></i></a> -->
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 text-right">
+                                        <div class="d-flex justify-content-end">
+                                            <a href="admin/productedit" target="_blank" class="btn btn-success shadow sharp mr-1"><i class="fa fa-plus"></i> Ürün Ekle</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+            var file = document.querySelector("#excelfile");
+            file.addEventListener("change", function(event) {
+
+                var totalfiles = file.files.length;
+                if (totalfiles > 0) {
+
+                    var formData = new FormData();
+
+                    formData.append("excelfile", file.files[0]);
+                    console.log(file.files);
+                    
+
+                    let a = SendXMLHttpRequest(formData, "excel/import", function handle(returnStr, status) {
+
+                        console.log(returnStr);
+                        // location.reload();
+                    });
+
+                }
+            });
+        </script>

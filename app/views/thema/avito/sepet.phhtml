@@ -1,0 +1,66 @@
+<section class="page-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="content">
+					<h1 class="page-name">Sepet</h1>
+					<ol class="breadcrumb">
+						<li><a href="/">Anasayfa</a></li>
+						<li class="active">Sepet</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<div class="page-wrapper">
+  <div class="cart shopping">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="block">
+            <div class="product-list">
+              <form method="post">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th class="">Ürün Adı</th>
+                      <th class="">adet</th>
+                      <th class="">Fiyat</th>
+                      <th class=""></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php 
+                    foreach ($model as $urun) {
+                        $resim = explode(',',$urun["product"]->imagelist)[0];
+                        echo '
+                        <tr class="">
+                            <td class="">
+                                <div class="product-info">
+                                <img width="80" src="assets/images/products/'.$resim.'" alt="" />
+                                <a href="product/'.$urun["product"]->seourl.'">'.$urun["product"]->name.'</a>
+                                </div>
+                            </td>
+                            <td>'.$urun["product"]->prices.'</td>
+                            <td class="">'.$urun["total"].'</td>
+                            <td class="">
+                                <a class="product-remove" href="/sepettensil/'.$urun["basketdetayid"].'">sil</a>
+                            </td>
+                        </tr>
+                        ';
+                    }
+                    ?>
+                   
+                  </tbody>
+                </table>
+                <a href="/checkout" class="btn btn-main pull-right">Siparişi Tamamla</a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

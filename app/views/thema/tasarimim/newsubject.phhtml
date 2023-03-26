@@ -1,0 +1,109 @@
+<section id="content" class="container mt-5">
+   <div class="page-content page-container" id="page-content">
+      <div class="padding">
+         <div class="row">
+            <div class="col-md-12">
+               <div class="card">
+                  <div class="card-header"><strong>Add Subject</strong></div>
+                  <div class="card-body">
+                     <form method="post">
+                     <div class="form-group"><label class="text-muted" for="title">Title</label><input name="title" type="text" class="form-control  <?php echo $model->hasError('title') ? 'is-invalid' : ''?>" id="title" placeholder="Enter subject title"> <small id="title" class="form-text text-muted">Enter subject title</small></div> 
+                     <div class="form-group"><label class="text-muted" for="subtitle">Subtitle</label><input name="subtitle" type="text" class="form-control  <?php echo $model->hasError('subtitle') ? 'is-invalid' : ''?>" id="subtitle" placeholder="Enter subtitle"> <small id="subtitle" class="form-text text-muted">Enter subtitle</small></div> 
+                     <div class="form-group">
+                           <label class="my-1 mr-2" for="">Category</label>
+                           <select class="selectpicker  <?php echo $model->hasError('categoryId') ? 'is-invalid' : ''?>" name="categoryId" data-live-search="true">
+                           <option value="" data-tokens="">Seçiniz</option>
+                           <?php foreach ($kategoriler as $key) {
+                              
+                              if (@$url == $key["link"]) 
+                                 echo "<option value=\"".$key["ID"]."\" selected data-tokens=\"".$key["ID"]."\">".$key["ADI"]."</option>";
+                              else
+                                 echo "<option value=\"".$key["ID"]."\" data-tokens=\"".$key["ID"]."\">".$key["ADI"]."</option>";
+
+                           }?>
+                           </select>
+                        </div>
+                        <!-- <div class="form-group"><label class="text-muted" for="exampleInputEmail1">Email address</label><input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"> <small id="emailHelp" class="form-text text-muted">We don't share email with anyone</small></div>
+                        <div class="form-group"><label class="text-muted" for="exampleInputPassword1">Password</label><input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"> <small id="passwordHelp" class="form-text text-muted">your password is saved in encrypted form</small></div> -->
+                        <!-- <div class="form-group">
+                           <div class="form-check"><input type="checkbox" class="form-check-input"><label class="form-check-label">Check me out</label></div>
+                        </div> -->
+                        <div class="form-group">
+                           <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
+                              <div class="btn-group">
+                              <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font"><i class="icon-font"></i><b class="caret"></b></a>
+                                 <ul class="dropdown-menu">
+                                 </ul>
+                              </div>
+                              <div class="btn-group">
+                              <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font Size"><i class="icon-text-height"></i>&nbsp;<b class="caret"></b></a>
+                                 <ul class="dropdown-menu">
+                                 <li><a data-edit="fontSize 5"><font size="5">Huge</font></a></li>
+                                 <li><a data-edit="fontSize 3"><font size="3">Normal</font></a></li>
+                                 <li><a data-edit="fontSize 1"><font size="1">Small</font></a></li>
+                                 </ul>
+                              </div>
+                              <div class="btn-group">
+                              <a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="icon-bold"></i></a>
+                              <a class="btn" data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="icon-italic"></i></a>
+                              <a class="btn" data-edit="strikethrough" title="Strikethrough"><i class="icon-strikethrough"></i></a>
+                              <a class="btn" data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i class="icon-underline"></i></a>
+                              <a class="btn" data-edit="code" title="Code">{-}</a>
+                              </div>
+                              <div class="btn-group">
+                              <a class="btn" data-edit="insertunorderedlist" title="Bullet list"><i class="icon-list-ul"></i></a>
+                              <a class="btn" data-edit="insertorderedlist" title="Number list"><i class="icon-list-ol"></i></a>
+                              <a class="btn" data-edit="outdent" title="Reduce indent (Shift+Tab)"><i class="icon-indent-left"></i></a>
+                              <a class="btn" data-edit="indent" title="Indent (Tab)"><i class="icon-indent-right"></i></a>
+                              </div>
+                              <div class="btn-group">
+                              <a class="btn" data-edit="justifyleft" title="Align Left (Ctrl/Cmd+L)"><i class="icon-align-left"></i></a>
+                              <a class="btn" data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i class="icon-align-center"></i></a>
+                              <a class="btn" data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i class="icon-align-right"></i></a>
+                              <a class="btn" data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i class="icon-align-justify"></i></a>
+                              </div>
+                              <div class="btn-group">
+                              <a class="btn dropdown-toggle" data-toggle="dropdown" title="Hyperlink"><i class="icon-link"></i></a>
+                                 <div class="dropdown-menu input-append">
+                                    <input class="span2" placeholder="URL" type="text" data-edit="createLink"/>
+                                    <button class="btn" type="button">Add</button>
+                              </div>
+                              <a class="btn" data-edit="unlink" title="Remove Hyperlink"><i class="icon-cut"></i></a>
+
+                              </div>
+                              
+                              <div class="btn-group">
+                              <a class="btn" title="Insert picture (or just drag & drop)" id="pictureBtn"><i class="icon-picture"></i></a>
+                              <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" />
+                              </div>
+                              <div class="btn-group">
+                              <a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="icon-undo"></i></a>
+                              <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="icon-repeat"></i></a>
+                              </div>
+                              <input type="text" data-edit="inserttext" id="voiceBtn" x-webkit-speech="">
+                           </div>
+                           <div id="editor">
+                              
+                           </div>
+                           <textarea name="content" id="editorcontent" class="d-none"></textarea>
+                        </div>
+                        <!-- <div class="form-group p-2">
+                           <div class="p-0 container">
+                              <div class="editor"></div>
+                           </div>                      
+                        </div> -->
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                     </form>
+                     <?php 
+                     if (@$model->getErrorMessage()!="") {
+                     echo '<div class="p-3 mb-2 bg-danger text-white">'.addslashes(@$model->getErrorMessage()).'</div>';
+                     }
+                     ?>
+                  </div>
+               </div>
+            </div>
+         </div>
+       </div>
+    </div>
+</section>

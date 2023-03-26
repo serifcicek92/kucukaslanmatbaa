@@ -1,0 +1,39 @@
+<section class="signin-page account">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="block text-center">
+          <h2 class="text-center">Yeni Hesap Oluşturun</h2>
+          <form class="text-left clearfix" action="" method="post">
+            <div class="form-group">
+              <input name="name" type="text" class="form-control"  placeholder="Adınız">
+            </div>
+            <div class="form-group">
+              <input name="surname" type="text" class="form-control"  placeholder="Soyadınız">
+            </div>
+            <div class="form-group">
+              <input name="email" type="email" class="form-control"  placeholder="Email adresiniz">
+            </div>
+            <div class="form-group">
+              <input name="password" type="password" class="form-control"  placeholder="Şifre">
+            </div>
+            <div class="form-group">
+              <input name="repassword" type="password" class="form-control"  placeholder="Şifre tekrar">
+            </div>
+            <div class="form-check">
+              <input name="contractvalid" class="form-check-input" type="checkbox" data-toggle="toggle" id="flexCheckDefault">
+              <label class="form-check-label" for="flexCheckDefault">
+                Üyelik şartlarını kabul ediyorum.
+              </label>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-main text-center">Üye Ol</button>
+            </div>
+          </form>
+          <p class="mt-20">Zaten bir hesabınız varmı ? <a href="login.html"> Giriş Yapın</a></p>
+          <p><a href="forget-password.html"> Şifrenizimi Unuttunuz?</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

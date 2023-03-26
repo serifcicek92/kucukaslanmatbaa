@@ -1,0 +1,95 @@
+alter table basket ADD `guuid` VARCHAR(25) NULL;
+ALTER TABLE orders ADD taxtotal decimal(10,2) NULL;
+
+ALTER TABLE orders ADD amounttotal decimal(10,2) NULL;
+
+alter table orders add orderer varchar(80) null;
+
+alter table orders add adress varchar(255) null;
+
+alter table orders add phone varchar(80) null;
+
+alter table orders add zipcode varchar(15) null;
+
+alter table orders add city varchar(80) null;
+
+alter table orders add district varchar(80) null;
+
+
+
+CREATE TABLE `billing`(
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `orderid` bigint(20) NOT NULL,
+  `billingnumber` varchar(20) default null,
+  `billingdate` timestamp default CURRENT_TIMESTAMP,
+  `billingstatus` numeric(5) default NULL,
+  `waybillnumber` varchar(20) default NULL,
+  `waybilldate` timestamp default CURRENT_TIMESTAMP,
+  `paymentoption` bigint(20) DEFAULT NULL,
+  `withouttax` numeric(10,2) default NULL,
+  `taxtotal` numeric(10,2) default NULL,
+  `amounttotal` numeric(10,2) default NULL,
+  `installments` bigint(20) DEFAULT NULL,
+  `orderdate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `addid` bigint(20) DEFAULT NULL,
+  `addtime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updateid` bigint(20) DEFAULT NULL,
+  `updatetime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `active` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_turkish_ci;
+
+
+CREATE TABLE `billingdetail`(
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `billingid` bigint(20) NOT NULL,
+  `productid` bigint(20) default NULL,
+  `amount` numeric(10,2) default NULL,
+  `unitprice` numeric(10,2) default NULL,
+  `taxtotal` numeric(10,2) default NULL,
+  `amounttotal` numeric(10,2) default NULL,
+  `addid` bigint(20) DEFAULT NULL,
+  `addtime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updateid` bigint(20) DEFAULT NULL,
+  `updatetime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `active` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_turkish_ci;
+
+
+
+
+select * from combovalues c --sipariş durumlar 0 yok 1 ödeme yapıldı sipariş hazırlanıyor, 2 fatura kesildi kargoya gönderiliyor, 3 kargoya verildi, 4 teslim edildi., 5 iade edildi., 6. iptal
+
+
+
+
+
+select * from combovalues c 
+
+INSERT INTO kucukas1_kucukaslanmatbaadv.combovalues (name, code, visibleorder, value1, value2, value3, addid, addtime, updateid, updatetime, active)
+values ('ORDERSTATUS', 1, 1, 'Ödeme yapıldı. Sipariş hazırlanıyor.', NULL, NULL, 1, current_timestamp, 1, current_timestamp, 1),
+	   ('ORDERSTATUS', 2, 2, 'Fatura kesildi. Kargoya gönderiliyor.', NULL, NULL, 1, current_timestamp, 1, current_timestamp, 1),
+	   ('ORDERSTATUS', 3, 3, 'Kargoya verildi.', NULL, NULL, 1, current_timestamp, 1, current_timestamp, 1),
+	   ('ORDERSTATUS', 4, 4, 'Teslim edildi.', NULL, NULL, 1, current_timestamp, 1, current_timestamp, 1),
+	   ('ORDERSTATUS', 5, 5, 'İade edildi.', NULL, NULL, 1, current_timestamp, 1, current_timestamp, 1),
+	   ('ORDERSTATUS', 6, 6, 'İptal', NULL, NULL, 1, current_timestamp, 1, current_timestamp, 1)
+	   
+	   
+INSERT INTO kucukas1_kucukaslanmatbaadv.combovalues (name, code, visibleorder, value1, value2, value3, addid, addtime, updateid, updatetime, active)
+values ('PAYMENTOPTION', 1, 1, 'Kredi Kartı', NULL, NULL, 1, current_timestamp, 1, current_timestamp, 1),
+	   ('PAYMENTOPTION', 2, 2, 'Havale/EFT', NULL, NULL, 1, current_timestamp, 1, current_timestamp, 1),
+	   ('PAYMENTOPTION', 3, 3, 'Nakit', NULL, NULL, 1, current_timestamp, 1, current_timestamp, 1)
+	   
+	   
+select * from productprices  b 
+
+
+
+CREATE TABLE `firmamenuleri`(
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `firmaadi` varchar(50) NOT NULL,
+  `dosyayolu` varchar(150) default NULL,
+  `linki` varchar(150) default null,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_turkish_ci;

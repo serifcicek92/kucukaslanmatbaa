@@ -1,0 +1,228 @@
+        <!--**********************************
+        Content body start
+        ***********************************-->
+        <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+
+
+                <div class="row page-titles mx-0">
+                    <div class="col-sm-6 p-md-0">
+                        <div class="welcome-text">
+                            <h4>Ürün Düzenleme</h4>
+                            <span>Ürün Düzenle</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Ürün</a></li>
+                            <li class="breadcrumb-item active"><a href="javascript:void(0)">Düzenle</a></li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- content -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-xl-3 ">
+                                        <!-- Tab panes -->
+                                        <div class="tab-content" id="tab-content">
+
+                                            <?php
+
+
+                                            if (sizeof($images) <= 0) {
+                                                echo ' <div role="tabpanel" class="tab-pane fade active show" id="first">
+                                                            <img class="img-fluid" src="assets/images/helper/blankimage_1.jpg" alt="">
+                                                        </div>';
+                                            } else {
+                                                foreach ($images as $item) {
+
+                                                    echo '<div role="tabpanel" class="tab-pane fade ' . ($item["path"] == $images[0]["path"] ? ' active show' : '') . ' " id="x' . $item["id"] . '">
+                                                            <img class="img-fluid" src="assets/images/products/' . $item["path"] . '" alt="">
+                                                        </div>';
+                                                }
+                                            }
+
+                                            ?>
+                                        </div>
+                                        <div class="tab-slide-content new-arrival-product mb-4 mb-xl-0">
+                                            <!-- Nav tabs -->
+                                            <ul class="nav slide-item-list mt-3" role="tablist" id="tab-content-slide">
+                                                <?php
+                                                if (sizeof($images) <= 0) {
+                                                    echo '  <li role="presentation" class="show">
+                                                            <a href="#first" role="tab" data-toggle="tab" class="active" aria-selected="true">
+                                                                <img class="img-fluid" src="assets/images/helper/blankimage_1.jpg" alt="" width="50">
+                                                            </a>
+                                                        </li>';
+                                                } else {
+                                                    foreach ($images as $item) {
+
+                                                        echo '<li role="presentation" ' . ($item["path"] == $images[0]["path"] ? 'class="show"' : '') . '>
+                                                                <a href="#x' . $item["id"] . '" role="tab" data-toggle="tab" ' . ($item["path"] == $images[0]["path"] ? 'class="active" aria-selected="true"' : '') . '>
+                                                                    <img class="img-fluid" src="assets/images/products/thump_' . $item["path"] . '" alt="" width="50">
+                                                                </a>
+                                                              </li>';
+                                                    }
+                                                }
+
+                                                ?>
+
+                                                <li role="presentation" id="insertImage">
+                                                    <a onclick="javascript:document.querySelector('#file').click()" role="tab" data-toggle="tab" class="" aria-selected="false"><img class="img-fluid" src="assets/images/helper/addimage_1.png" alt="" width="50"></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <input type="file" name="file[]" id="file" accept="image/*" multiple hidden />
+                                    <!--Tab slider End-->
+
+
+                                    <div class="col-xl-9 col-sm-12">
+                                        <div class="product-detail-content">
+                                            <!--Product details-->
+                                            <form method="post" action="admin/productsave" id="form" enctype="multipart/form-data">
+                                                <div class="new-arrival-content pr">
+                                                    <!-- Product Title -->
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 col-form-label">Ürün Başlık</label>
+                                                        <div class="col-sm-3">
+                                                            
+                                                            <input type="text" name="name" value="<?php echo (isset($model->name) ? @$model->name : "")?>" class="form-control" placeholder="Başlık">
+                                                        </div>
+                                                    </div>
+                                                    <!-- Product Category -->
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 col-form-label">Ürün Kategorisi</label>
+                                                        <div class="col-sm-3">
+                                                            <select id="inputState" name="categoryid" class="form-control">
+                                                                <?php
+                                                                foreach ($categories as $item) {
+                                                                    echo '<option value="' . $item["id"] . '" '.(isset($model->categoryid) && @$model->categoryid == $item["id"] ? "selected" : "").'>' . $item["name"] . '</option>';
+                                                                }
+
+                                                                ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Product Code -->
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 col-form-label">Ürün Kodu</label>
+                                                        <div class="col-sm-3">
+                                                            <input type="text" name="code" value="<?php echo isset($model->code) ? $model->code : ""?>" class="form-control" placeholder="Kod">
+                                                        </div>
+                                                    </div>
+                                                    <!-- Tax -->
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 col-form-label">Kdv Tipi</label>
+                                                        <div class="col-sm-2">
+                                                            <select id="inputState" name="taxtype" class="form-control">
+                                                                <?php
+                                                                foreach ($taxTypes as $item) {
+                                                                    echo '<option value="' . $item["code"] . '" '.(isset($model->taxtype) && @$model->taxtype == $item["code"] ? 'selected' : '').'>' . $item["value1"] . '</option>';
+                                                                }
+                                                                ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Product Price -->
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 col-form-label">Etiket Fiyatı</label>
+                                                        <div class="col-sm-2">
+                                                            <input type="number" name="prices" step="any" class="form-control" placeholder="fiyat" value="<?php echo isset($model->prices) ? $model->prices : ""; ?>" pattern="^\d*(\.\d{0,2})?$">
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Product Properties -->
+                                                    <!-- <div class="container-fluid border py-3">
+                                                        <div class="row m-1">
+                                                            <label class="col-sm-3">Ölçüsü</label>
+                                                            <div class="col-sm-3">
+                                                                <input type="text" name="name" class="form-control" placeholder="Ölçü">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row m-1">
+                                                            <label class="col-sm-3">Yazı Karakteri</label>
+                                                            <div class="col-sm-3">
+                                                                <input type="text" class="form-control" placeholder="Karakter">
+                                                            </div>
+                                                        </div>
+                                                    </div> -->
+
+                                                    <!-- Product Explain -->
+                                                    <div class="row">
+                                                        <div class="col-xl-12 col-xxl-12">
+                                                            <div class="card">
+                                                                <div class="card-header">
+                                                                    <h4 class="card-title">Açıklama</h4>
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <textarea class="summernote" name="content"><?php echo isset($model->content) ? $model->content : ""; ?></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="shopping-cart mt-3 text-right">
+                                                        <button type="submit" class="btn btn-success btn-lg" href="#"><i class="fa fa-check mr-2"></i>Kaydet</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col" id="donen">
+                        test test test
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <script>
+            var file = document.querySelector("#file");
+            file.addEventListener("change", function(event) {
+
+                var totalfiles = file.files.length;
+                if (totalfiles > 0) {
+
+                    var formData = new FormData();
+
+                    // Read selected files
+                    for (var index = 0; index < totalfiles; index++) {
+                        formData.append("file[]", file.files[index]);
+                    }
+
+                    let ab = document.querySelector("#tab-content-slide").lastElementChild.innerHTML;
+                    let a = SendXMLHttpRequest(formData, "admin/productimageupload", function handle(returnStr, status) {
+
+                        const jobj = JSON.parse(returnStr);
+                        const tabcontents = document.querySelector("#tab-content");
+                        const tabcontentslideLast = document.querySelector("#tab-content-slide").lastElementChild;
+                        let contentstr = "";
+                        let slidestr = "";
+                        jobj[0]["path"]
+
+                        for (let index = 0; index < jobj.length; index++) {
+
+                            contentstr += '<div role="tabpanel" class="tab-pane fade" id="x' + jobj[index]["path"].split('.')[0] + '"><img class="img-fluid" src="assets/images/products/' + jobj[index]["path"] + '" alt=""></div>';
+                            slidestr += '<li role="presentation"><a href="#x' + jobj[index]["path"].split('.')[0] + '" role="tab" data-toggle="tab"><img class="img-fluid" src="assets/images/products/thump_' + jobj[index]["path"] + '" alt="" width="50"></a></li>';
+                        }
+                        tabcontents.lastElementChild.insertAdjacentHTML('afterend', contentstr);
+                        tabcontentslideLast.insertAdjacentHTML('beforebegin', slidestr);
+                    });
+
+                }
+            });
+
+
+        </script>

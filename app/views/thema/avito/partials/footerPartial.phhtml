@@ -1,0 +1,29 @@
+<footer class="footer section text-center">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<ul class="social-media">
+					<li>
+						<a href="https://www.facebook.com/kucukaslanmatbaa">
+							<i class="tf-ion-social-facebook"></i>
+						</a>
+					</li>
+					<li>
+						<a href="https://www.instagram.com/kucukaslanmatbaa">
+							<i class="tf-ion-social-instagram"></i>
+						</a>
+					</li>
+				</ul>
+				<ul class="footer-menu text-uppercase">
+					<li>
+						<a href="contact.html">İletişim</a>
+					</li>
+					<li>
+						<a href="shop.html">Hizmetlerimiz</a>
+					</li>
+				</ul>
+				<p class="copyright-text">Copyright &copy;2021, Designed &amp; Developed by <a href="https://eschelping.com/" rel="nofollow">eschelping</a></p>
+			</div>
+		</div>
+	</div>
+</footer>

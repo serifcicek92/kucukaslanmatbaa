@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="tr">
+<head>
+    <title><?php echo $this->title?></title>
+    <meta name="description" content="<?php echo $this->description;?>">
+    <?php //require(INCLUDEPATH."/system/basehref.php");
+        echo BASEURL;
+    ?>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta name="yandex-verification" content="a8f64f21e750c706" />
+   
+   <!-- <link rel="stylesheet" href="assets/bootstrap.min.css"> -->
+   
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+
+    <!-- Themefisher Icon font -->
+    <link rel="stylesheet" href="plugins/themefisher-font/style.css">
+    <!-- bootstrap.min css -->
+    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+
+    <!-- Animate css -->
+    <link rel="stylesheet" href="plugins/animate/animate.css">
+    <!-- Slick Carousel -->
+    <link rel="stylesheet" href="plugins/slick/slick.css">
+    <link rel="stylesheet" href="plugins/slick/slick-theme.css">
+
+    <!-- Main Stylesheet -->
+    <!-- <link rel="stylesheet" href="assets/style.css"> -->
+   <link rel="stylesheet" href="assets/style.css?v=<?php echo rand(1,999);?>">
+
+
+    <!-- wowslider -->
+    <link rel="stylesheet" type="text/css" href="plugins/wowslider/style.css" />
+
+
+
+    <!-- Partial css -->
+    <?php echo $this->CSS;?>   <?php echo $this->pluginCss?>   <?php echo $this->headerString?>
+</head>
+
+<body>
+    <!-- Header Partial -->
+    <?php include INCLUDEPATH . '/app/views/thema/' . THEMANAME . '/partials/headerPartial.phhtml'; ?>
+
+    <!-- menu partial -->
+    <?php include INCLUDEPATH . '/app/views/thema/' . THEMANAME . '/partials/menuPartial.phhtml'; ?>
+
+
+
+    <!-- Content -->
+    {{Content}}
+
+
+    <!-- footer -->
+    <?php include INCLUDEPATH . '/app/views/thema/' . THEMANAME . '/partials/footerPartial.phhtml'; ?>
+    <!--
+    Essential Scripts
+    =====================================-->
+
+    <!-- Main jQuery -->
+    <script src="plugins/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+    <!-- Bootstrap 3.1 -->
+    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Touchpin -->
+    <script src="plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+    <!-- Instagram Feed Js -->
+    <script src="plugins/instafeed/instafeed.min.js"></script>
+    <!-- Video Lightbox Plugin -->
+    <script src="plugins/ekko-lightbox/dist/ekko-lightbox.min.js"></script>
+    <!-- Count Down Js -->
+    <script src="plugins/syo-timer/build/jquery.syotimer.min.js"></script>
+
+    <!-- slick Carousel -->
+    <!-- <script src="plugins/slick/slick.min.js"></script>
+    <script src="plugins/slick/slick-animation.min.js"></script> -->
+
+    <!-- Google Mapl -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+    <script type="text/javascript" src="plugins/google-map/gmap.js"></script>
+
+    <!-- wowslider -->
+    <!-- <script type="text/javascript" src="plugins/wowslider/wowslider.js"></script> -->
+
+    <!-- Main Js File -->
+    <script src="scripts/script.js"></script>
+
+    <?php echo $this->scripts; ?>
+    <?php echo $this->pluginScripts;?>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<?php
+use App\System\Application;
+        $anaMenu = null //Application::$app->kategoriler->get('0',null);
+    ?>
+   <header class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm">
+         <a href="anasayfa" class="navbar-brand font-weight-bold d-block">ESC Helping</a>
+         <button type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbars"
+            aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+         <div id="navbarContent" class="collapse navbar-collapse">
+            <ul class="navbar-nav mx-auto">
+               <?php /*foreach ($anaMenu as $key) {
+                     $subMenu = Application::$app->kategoriler->get($key["ID"]);
+                        if (count($subMenu)>0) {
+                           echo '<li class="nav-item dropdown megamenu">
+                                 <a id="megamenu" href="" data-toggle="dropdown"
+                                 aria-haspopup="true" aria-expanded="false"
+                                 class="nav-link dropdown-toggle font-weight-bold text-uppercase">'.$key["ADI"].'</a>';
+                           echo '<div aria-labelledby="megamenu" class="dropdown-menu border-0 p-0 m-0">
+                                    <div class="container">
+                                       <div class="row bg-white rounded-0 m-0 shadow-sm">
+                                          <div class="col-lg-12 col-xl-12">
+                                             <div class="p-4">
+                                                <div class="row">';
+                                                foreach ($subMenu as $subKey) {
+
+                                                   echo '<div class="col-lg-4 mb-3">
+                                                            <h6 class="font-weight-bold text-uppercase"><a href="kategori/'.$subKey["link"].'" class="nav-link">'.$subKey["ADI"].'</a></h6>
+                                                         </div>';
+                                                }
+                                                echo '</div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </li>';
+                        }else
+                       echo '<li class="nav-item"><a href="'.$key["link"].'" class="nav-link font-weight-bold text-uppercase">'.$key["ADI"].'</a></li>'; 
+               }*/?>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <?php //if(!Application::$app->auth->checkLogin()):?>
+            <a href="login" class="btn btn-light ml-3">Giriş</a>
+            <a href="signup" class="btn btn-primary">Üy Ol</a>
+            <?php //else:?>
+            <ul class="navbar-nav border-0 p-0 m-0">
+               <li class="nav-item dropdown">
+                  <a href="#usermenu" data-toggle="dropdown" class="nav-link font-weight-bold text-uppercase border-0 p-0 m-0">
+                     <img width="40" height="40" src="<?php echo $_SESSION["ESCLOGIN"]["PROFILEPHOTOURL"] ?? "https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583319/AAA/3.jpg";?>" alt=""
+                        class="d-block ui-w-30 rounded-circle">
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right" id="usermenu">
+                     <ul class="nav flex-column">
+                        <li class="nav-item p-1"><a href="userprofile" class="nav-link">User Profile</a></li>
+                        <li class="nav-item p-1"><a href="usersettings" class="nav-link">User Settings</a></li>
+                        <li class="nav-item p-1"><a href="logout" class="nav-link">Logout</a></li>
+                     </ul>
+                  </div>
+               </li>
+            </ul>
+            <?php //endif;?> 
+         </div>
+      </nav>
+   </header>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="tr">
+
+<head>
+    <title><?php echo $this->title?></title>
+    <meta name="description" content="<?php echo $this->description;?>">
+    <?php require(INCLUDEPATH."/system/basehref.php");?>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <link rel="stylesheet" href="assets/style.css?v=<?php echo rand(1,999);?>">
+   <link rel="stylesheet" href="assets/bootstrap.min.css">
+   <meta name="yandex-verification" content="a8f64f21e750c706" />
+
+    <!-- Themefisher Icon font -->
+  <link rel="stylesheet" href="plugins/themefisher-font/style.css">
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+  
+  <!-- Animate css -->
+  <link rel="stylesheet" href="plugins/animate/animate.css">
+  <!-- Slick Carousel -->
+  <link rel="stylesheet" href="plugins/slick/slick.css">
+  <link rel="stylesheet" href="plugins/slick/slick-theme.css">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="assets/style.css">
+
+
+
+    <!-- Partial css -->
+    <?php echo $this->CSS;?>   <?php echo $this->pluginCss?>   <?php echo $this->headerString?>
+</head>
+
+<body>
+    <?php include INCLUDEPATH . '/app/views/thema/' . THEMANAME . '/partials/headerPartial.phhtml'; ?>
+<!-- <div class="container">
+    <div class="container">
+      <div class="row">
+         <div class="col">
+            Bilgisayar > Yazılım
+         </div>
+      </div>
+   </div> -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <?php include INCLUDEPATH . '/app/views/thema/' . THEMANAME . '/partials/sidebarPartial.phhtml'; ?>
+        </div>
+        <div class="col-md-9">   
+            {{Content}}
+        </div>
+   </div>
+</div>
+    <?php include INCLUDEPATH . '/app/views/thema/' . THEMANAME . '/partials/footerPartial.phhtml'; ?>
+    <!-- Optional JavaScript -->
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/popper.min.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>
+    <script src="scripts/main.js?v=<?php echo rand(1,999);?>"></script>
+
+    <?php echo $this->scripts; ?>
+    <?php echo $this->pluginScripts;?>
+</body>
+
+</html>

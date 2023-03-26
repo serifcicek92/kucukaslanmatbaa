@@ -1,0 +1,196 @@
+<section class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="content">
+                    <h1 class="page-name">Siparişi Tamamla</h1>
+                    <ol class="breadcrumb">
+                        <li><a href="index.html">Anasayfa</a></li>
+                        <li class="active">Siparişi Tamamla</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="page-wrapper">
+    <div class="checkout shopping">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <form class="checkout-form" action="/checkoutcomplate" method="post">
+                        <div class="block billing-details">
+                            <h4 class="widget-title">Fatura Detayları</h4>
+                            <!-- <form class="checkout-form" action="/checkoutcomplate" method="post"> -->
+                            <div class="form-group">
+                                <label for="full_name">Ad Soyad</label>
+                                <input type="text" value="<?php echo @$model[2]['post']['orderer']; ?>" name="orderer" required class="form-control <?php echo $errors != null && array_key_exists("orderer",$errors) ? "invalid" : ""?>" id="full_name" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="user_address">Adresi</label>
+                                <input type="text" value="<?php echo @$model[2]['post']['adress']; ?>" name="adress" required class="form-control <?php echo $errors != null && array_key_exists("adress",$errors) ? "invalid" : ""?>" id="user_address" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="user_address">Telefon</label>
+                                <input type="tel" value="<?php echo @$model[2]['post']['phone']; ?>" name="phone" required class="form-control telmask <?php echo $errors != null && array_key_exists("phone",$errors) ? "invalid" : ""?>" id="user_address" placeholder="">
+                            </div>
+                            <div class="checkout-country-code clearfix">
+                                <div class="form-group">
+                                    <label for="user_post_code">Posta kodu</label>
+                                    <input type="text" value="<?php echo @$model[2]['post']['zipcode']; ?>" required class="form-control <?php echo $errors != null && array_key_exists("zipcode",$errors) ? "invalid" : ""?>" id="user_post_code" name="zipcode" value="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="user_city">Şehir</label>
+                                    <input type="text" value="<?php echo @$model[2]['post']['city']; ?>" required class="form-control <?php echo $errors != null && array_key_exists("city",$errors) ? "invalid" : ""?>" id="user_city" name="city" value="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="user_country">Semt</label>
+                                <input type="text" value="<?php echo @$model[2]['post']['district']; ?>" required name="district" class="form-control <?php echo $errors != null && array_key_exists("district",$errors) ? "invalid" : ""?>" id="user_country" placeholder="">
+                            </div>
+                            <!-- </form> -->
+                        </div>
+                        <div class="block">
+                            <h4 class="widget-title">Ödeme Yöntemi</h4>
+                            <p>Kredi Kartı Bilgileri</p>
+                            <div class="checkout-product-details">
+                                <div class="payment">
+                                    <div class="card-details">
+                                        <!-- <form class="checkout-form"> -->
+                                            <div class="form-group">
+                                                <label for="card-full-name">Kart Sahinin Tam Adı</label>
+                                                <input type="text" name="cardfullname" required value="<?php echo @$model[2]['post']['cardfullname']; ?>" class="form-control <?php echo $errors != null && array_key_exists("cardfullname",$errors) ? "invalid" : ""?>" id="card-full-name" placeholder="">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="card-number">Kart Numarası <span class="required">*</span></label>
+                                                <input id="card-number" name="cardnumber" required class="form-control <?php echo $errors != null && array_key_exists("cardnumber",$errors) ? "invalid" : ""?>" type="tel" placeholder="•••• •••• •••• ••••">
+                                            </div>
+                                            <div class="form-group half-width padding-right">
+                                                <label for="card-expiry">Son Kullanma Tarihi <span class="required">*</span></label>
+                                                <input id="card-expiry" name="cardexpiry" required class="form-control <?php echo $errors != null && array_key_exists("cardexpiry",$errors) ? "invalid" : ""?>" type="tel" placeholder="MM / YY">
+                                            </div>
+                                            <div class="form-group half-width padding-left">
+                                                <label for="card-cvc">Güvenlik Kodu <span class="required">*</span></label>
+                                                <input id="card-cvc" name="cardcvc" required class="form-control <?php echo $errors != null && array_key_exists("cardcvc",$errors) ? "invalid" : ""?>" type="tel" maxlength="3" placeholder="CVC">
+                                            </div>
+                                            <!-- <a href="confirmation.html" class="btn btn-main mt-20">Siparişi Onayla</a> -->
+                                            <input type="submit" class="btn btn-main mt-20" value="Siparişi Onayla">
+                                        <!-- </form> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-4">
+                    <div class="product-checkout-details">
+                        <div class="block">
+                            <h4 class="widget-title">Sipariş Toplamı</h4>
+
+                            <?php
+                            $sum = 0;
+                            foreach ($model as $urun) {
+
+                                $resim = explode(',', $urun["product"]->imagelist)[0];
+                                echo '
+                                    <div class="media product-card">
+                                        <a class="pull-left" href="product/' . $urun["product"]->seourl . '">
+                                            <img class="media-object" src="assets/images/products/' . $resim . '" alt="Image" />
+                                        </a>
+                                        <div class="media-body">
+                                            <h4 class="media-heading"><a href="product/' . $urun["product"]->seourl . '">' . $urun["product"]->name . '</a></h4>
+                                            <p class="price">' . $urun["basketdetay"]->miktar . ' x ' . $urun["product"]->prices . ' TL</p>
+                                            <!--<span class="remove">sil</span>-->
+                                        </div>
+                                    </div>
+                                    
+                                    ';
+                                $sum += $urun["basketdetay"]->miktar * $urun["product"]->prices;
+                            }
+
+
+                            ?>
+                            <ul class="summary-prices">
+                                <li>
+                                    <span>Alt Toplam:</span>
+                                    <span class="price"><?php echo $sum; ?> TL</span>
+                                </li>
+                                <li>
+                                    <span>Kargo Ücreti:</span>
+                                    <span>Ücretsiz</span>
+                                </li>
+                            </ul>
+                            <div class="summary-total">
+                                <span>Toplam</span>
+                                <span><?php echo $sum; ?> TL</span>
+                            </div>
+                            <div class="verified-icon">
+                                <img src="assets/images/shop/verified.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="scripts/moment.js"></script>
+
+
+<script>
+    // Takes a credit card string value and returns true on valid number luhn algoritması
+    function valid_credit_card(value) {
+        // Accept only digits, dashes or spaces
+        if (/[^0-9-\s]+/.test(value)) return false;
+
+        // The Luhn Algorithm. It's so pretty.
+        let nCheck = 0,
+            bEven = false;
+        value = value.replace(/\D/g, "");
+
+        for (var n = value.length - 1; n >= 0; n--) {
+            var cDigit = value.charAt(n),
+                nDigit = parseInt(cDigit, 10);
+
+            if (bEven && (nDigit *= 2) > 9) nDigit -= 9;
+
+            nCheck += nDigit;
+            bEven = !bEven;
+        }
+
+        return (nCheck % 10) == 0;
+    }
+    const cardNum = document.querySelector("#card-number");
+    cardNum.addEventListener("change", function() {
+        console.log(valid_credit_card(cardNum.value));
+        if (valid_credit_card(cardNum.value) && cardNum.value != "") {
+            this.classList.remove("invalid");
+            this.classList.add("valid");
+        } else {
+            this.classList.add("invalid");
+            this.classList.remove("valid");
+        }
+    });
+
+    //let result = moment("19/12/2021", 'DD/MM/YYYY',true).isValid();
+
+    let cardexpiry = document.querySelector("#card-expiry");
+    cardexpiry.addEventListener("change", function() {
+        let result = moment(cardexpiry.value, 'MM/YY', true).isValid();
+        if (result && cardexpiry.value != "") {
+            var parts = this.value.split('/');
+            var expdate = new Date("20" + parts[1] + "-" + parts[0] + "-01");
+            if (expdate < Date.now()) {
+                this.classList.add("invalid");
+                this.classList.remove("valid");
+            } else {
+                this.classList.remove("invalid");
+                this.classList.add("valid");
+            }
+        } else {
+            this.classList.add("invalid");
+            this.classList.remove("valid");
+        }
+    });
+</script>

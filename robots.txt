@@ -1,0 +1,7 @@
+User-agent: *
+
+Allow: /
+
+
+
+Sitemap: https://kucukaslanmatbaa.com/sitemap.xml

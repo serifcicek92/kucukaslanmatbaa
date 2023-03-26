@@ -1,0 +1,14 @@
+        <div class="deznav">
+            <div class="deznav-scroll">
+                <ul class="metismenu" id="menu">
+                    <li><a href="admin">Göstergeler</a></li>
+                    <li><a href="admin/productedit">Ürün Ekle</a></li>
+                    <li><a href="admin/productlist">Ürün Listesi</a></li>
+                    <li><a href="admin/orderlist">Sipariş Listesi</a></li>
+                    <li><a href="admin/firmamenu">Firma Menüleri</a></li>
+                </ul>
+                <div class="copyright">
+                    <p><strong>ESCHelping</strong> © 2023 All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
