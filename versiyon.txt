@@ -93,3 +93,10 @@ CREATE TABLE `firmamenuleri`(
   `linki` varchar(150) default null,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_turkish_ci;
+
+insert into elementtype (id,name,active) values(2,'users',1);
+
+alter table users add telephone character varying(20);
+alter table users add adress character varying(255);
+alter table users add city character varying(50);
+alter table users add district character varying(50);

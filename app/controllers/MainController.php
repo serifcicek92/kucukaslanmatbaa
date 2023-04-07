@@ -25,6 +25,9 @@ class Main extends Controller
             $resultBasket = $basket->getUserActiveBasket($userid);
             $basket->loadData($resultBasket[0]);
             if (!isset($basket->id)) {
+                echo '<ul class="text-center">
+                        <li><a href="sepet" class="btn btn-small">Sepete Git</a></li>
+                    </ul>';
                 return;
             }
             $basketDetay = new Basketdetail();
@@ -68,7 +71,7 @@ class Main extends Controller
                         <li><a href="checkout" class="btn btn-small btn-solid-border">Siparişi Tamamla</a></li>
                     </ul>';
 
-            }
+            } 
 
         }
         

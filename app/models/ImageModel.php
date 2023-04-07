@@ -135,13 +135,13 @@ class Image extends Model
     {
         $this->db->beginTransaction();
         try {
-            $status = $this->db->prepare("UPDATE FROM images SET 
-                elementtypeno = coalesce(elementtypeno,:elementtypeno),
-                elementtypeid = coalesce(elementtypeid,:elementtypeid),
-                `path`= coalesce(`path`,:pathx), 
-                dimensions =coalesce(dimensions,:dimensions), 
-                visibleorder =coalesce(visibleorder,:visibleorder), 
-                title =coalesce(title,:title),
+            $status = $this->db->prepare("UPDATE images SET 
+                elementtypeno = coalesce(:elementtypeno,elementtypeno),
+                elementtypeid = coalesce(:elementtypeid,elementtypeid),
+                `path`= coalesce(:pathx,`path`), 
+                dimensions =coalesce(:dimensions,dimensions), 
+                visibleorder =coalesce(:visibleorder,visibleorder), 
+                title =coalesce(:title,title),
                 updateid = :updateid, 
                 updatetime = CURRENT_TIMESTAMP()
                 where id = :id
@@ -153,7 +153,6 @@ class Image extends Model
             $status->bindParam(':dimensions', $this->dimensions, ($this->dimensions == null ? \PDO::PARAM_NULL : \PDO::PARAM_INT));
             $status->bindParam(':visibleorder', $this->visibleorder, ($this->visibleorder == null ? \PDO::PARAM_NULL : \PDO::PARAM_INT));
             $status->bindParam(':title', $this->title, ($this->title == null ? \PDO::PARAM_NULL : \PDO::PARAM_STR));
-            $status->bindParam(':addid', $this->addid, ($this->addid == null ? \PDO::PARAM_NULL : \PDO::PARAM_INT));
             $status->bindParam(':updateid', $this->updateid, ($this->updateid == null ? \PDO::PARAM_NULL : \PDO::PARAM_INT));
             $status->execute();
             $this->db->commit();
@@ -215,4 +214,6 @@ class Image extends Model
         $status->execute();
         return $status->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    
 }

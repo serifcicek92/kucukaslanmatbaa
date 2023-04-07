@@ -6,23 +6,35 @@
                 <div class="dashboard-wrapper dashboard-user-profile">
                     <div class="media">
                         <div class="pull-left text-center" href="#!">
-                            <img class="media-object user-img" src="images/avater.jpg" alt="Image">
-                            <a href="#x" class="btn btn-transparent mt-20">Change Image</a>
+                            <form action="/updateimage" enctype="multipart/form-data" name="uploadprofile" id="uploadprofile" method="post">
+                                <img class="media-object user-img" src="assets/images/profile/<?php echo $model->profileimage; ?>" alt="Image">
+                                <a href="javascript:mediaclick()" name class="btn btn-transparent mt-20">Resimi Değiştir</a>
+                                <input type="file" name="profileimage" id="profileimage" style="visibility:hidden;"/>
+                            </form>
                         </div>
                         <div class="media-body">
                             <div class="d-flex justify-content-end text-right">
-                                <a href="/usersettings" class="btn btn-danger">Reset Password</a>
+                                <a href="/resetpassword" class="btn btn-danger">Şifre Sıfırla</a>
                             </div>
-                            <h2 class="text-center">mail.mail.com</h2>
+                            <h2 class="text-center"><?php echo $model->email?></h2>
                             <form class="text-left clearfix" action="" method="post">
                                 <div class="form-group">
-                                    <input name="name" type="text" class="form-control" placeholder="Adınız">
+                                    <input name="firstname" type="text" value="<?php echo $model->firstname ?>" class="form-control" placeholder="Adınız">
                                 </div>
                                 <div class="form-group">
-                                    <input name="surname" type="text" class="form-control" placeholder="Soyadınız">
+                                    <input name="lastname" type="text" value="<?php echo $model->lastname; ?>" class="form-control" placeholder="Soyadınız">
                                 </div>
                                 <div class="form-group">
-                                    <textarea name="adress" id="adress" cols="30" rows="10" placeholder="adres"></textarea>
+                                    <input name="telephone" type="text" value="<?php echo $model->telephone; ?>" class="form-control" placeholder="0(543) 333 33 33">
+                                </div>
+                                <div class="form-group">
+                                    <textarea name="adress" id="adress" cols="30" rows="10" placeholder="adres"><?php echo $model->adress;?></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <input name="district" type="text" value="<?php echo $model->district; ?>" class="form-control" placeholder="Semt">
+                                </div>
+                                <div class="form-group">
+                                    <input name="city" type="text" value="<?php echo $model->city; ?>" class="form-control" placeholder="Şehir">
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-main text-center">Bilgileri Güncelle</button>
@@ -35,3 +47,15 @@
         </div>
     </div>
 </section>
+<script>
+    const x = document.querySelector("#profileimage");
+    function mediaclick() {
+        x.click();
+        return false;
+    }
+    x.addEventListener("change",function(){
+        console.log("change");
+        const frm = document.querySelector("#uploadprofile");
+        frm.submit();
+    });
+</script>

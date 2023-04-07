@@ -12,23 +12,26 @@ class User extends Model
 
 {
 
+    public ?int $id;
     public $userId;
 
-    public string $name;
+    public ?string $firstname;
+    public ?string $lastname;
+    public ?string $name;
 
-    public string $surname;
+    public ?string $surname;
 
-    public string $birthday;
+    public ?string $birthday;
 
-    public string $sex;
+    public ?string $sex;
 
-    public string $email;
+    public ?string $email;
 
-    public string $password;
+    public ?string $password;
 
-    public string $repassword;
+    public ?string $repassword;
 
-    public string $contractvalid;
+    public ?string $contractvalid;
 
     public $status = "";
 
@@ -41,6 +44,11 @@ class User extends Model
     public $pictureurl;
     public $mailOnay;
     public $rolid;
+    public ?string $telephone;
+    public ?string $adress;
+    public ?string $city;
+    public ?string $district;
+
 
 
 
@@ -77,6 +85,48 @@ class User extends Model
     }
 
 
+    public function get()
+    {
+        $status = $this->db->prepare(
+            "SELECT u.*, img.path as 'profileimage' FROM users u 
+            LEFT JOIN images img on img.elementtypeno = 2 and img.elementtypeid = u.id
+            where (:email is null or u.email = :email) and (:id is null or u.id = :id)");
+        $status->bindParam(":email",$this->email,($this->email == null ? \PDO::PARAM_NULL :\PDO::PARAM_STR));
+        $status->bindParam(":id",$this->id,($this->id == null ? \PDO::PARAM_NULL :\PDO::PARAM_INT));
+        $status->execute();
+        return $status->fetch(\PDO::FETCH_OBJ);
+
+    }
+
+    public function update()
+    {
+        $this->db->beginTransaction();
+        try {
+            $status = $this->db->prepare(
+                "UPDATE users SET
+                    firstname = coalesce(:firstname,firstname),
+                    lastname = coalesce(:lastname,lastname),
+                    telephone = coalesce(:telephone,telephone),
+                    adress = coalesce(:adress,adress),
+                    city = coalesce(:city,city),
+                    district = coalesce(:district,district)
+                WHERE id = :id
+                ");
+            $status->bindParam(':firstname',$this->firstname,$this->firstname == null ? \PDO::PARAM_NULL : \PDO::PARAM_STR);
+            $status->bindParam(':lastname',$this->lastname,$this->lastname == null ? \PDO::PARAM_NULL : \PDO::PARAM_STR);
+            $status->bindParam(':telephone',$this->telephone,$this->telephone == null ? \PDO::PARAM_NULL : \PDO::PARAM_STR);
+            $status->bindParam(':adress',$this->adress,$this->adress == null ? \PDO::PARAM_NULL : \PDO::PARAM_STR);
+            $status->bindParam(':city',$this->city,$this->city == null ? \PDO::PARAM_NULL : \PDO::PARAM_STR);
+            $status->bindParam(':district',$this->district,$this->district == null ? \PDO::PARAM_NULL : \PDO::PARAM_STR);
+            $status->bindParam(':id',$this->id,$this->id);
+            $status->execute();
+            $this->db->commit();
+        } catch (\Throwable $th) {
+            $this->db->rollBack();
+        }
+        
+
+    }
 
     public function createUser(array $params)
 
@@ -450,5 +500,17 @@ class User extends Model
             //throw $th;
 
         }
+    }
+
+    public function resetPass()
+    {
+        $status = $this->db->prepare(
+            "UPDATE users
+            SET password = :password
+            WHERE id = :id "
+        );
+        $status->bindParam(":password",$this->password);
+        $status->bindParam(":id",$this->id);
+        $status->execute();
     }
 }

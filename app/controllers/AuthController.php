@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 
+use App\Models\Image;
 use App\Models\SubjectModel;
 
 use App\Models\User;
@@ -30,28 +31,58 @@ class Auth extends Controller
         }
 
         $userid = $_SESSION["ESCLOGIN"]["USERID"];
+        $user = new User();
 
-        $subjectModel = new SubjectModel();
-
-        $result = $subjectModel->getFromUseridx($userid);
-
-
-        $allSubjects = [];
-
-        if ($userid == 1) {
-            $allSubjects = $subjectModel->getAllSubject();
-        }
+        $user->id = $userid;
+        $model = $user->get();
 
 
-       return $this->render('userprofile',['model'=>$result,'allSubjects'=>$allSubjects]);
+       return $this->render('userprofile',['model'=>$model]);
 
     }
 
+    public function resetPassword()
+    {
+        if($this->checkLogin())
+        {
+      
+            $model = new User();
+            $model->id = $_SESSION["ESCLOGIN"]["USERID"];
+            if ($_POST) {//password_hash(md5($this->password), PASSWORD_DEFAULT)
+                $model->password =password_hash(md5($_POST["password"]),PASSWORD_DEFAULT);
+                $model->repassword = md5($_POST["repassword"]);
+                if(password_verify($model->repassword,$model->password)){
+                    $model->resetPass();
+                    $model = [
+                        'header'=>'Şifreniz Sıfırlandı',
+                        'content'=> 'Şifrenizi başarılı bir şekilde sıfırladınız. Artık yeni şifrenizi kullanmaya başlayabilirsiniz.',
+                        'link'=>'/',
+                        'linktitle'=>'Anasayfaya dön'
+                    ];
+                    return $this->render("confirmation",['model'=>$model]);
+                }else {
+                    return $this->render('resetpassword',['hata'=>"Parolalar eşleşmiyor"]);
+                }
+            }    
+        }
 
+        $this->render('resetpassword',[]);
+    }
 
     public function userSettingsIndex()
 
     {
+        $userid = $_SESSION["ESCLOGIN"]["USERID"];
+        $user = new User();
+        $user->id = $userid;
+        if ($_POST && $this->checkLogin()) {
+
+            $user->loadData($_POST);
+            $user->update();
+        }
+        
+        
+        $model = $user->get();
 
         Application::$app->view->addPartialCSS(["jquery.modal.min.css","fontawesome/css/all.css"]);
 
@@ -81,11 +112,41 @@ class Auth extends Controller
 
          });');
 
-        return $this->render('usersettings',[]);
+        return $this->render('usersettings',['model'=>$model]);
 
     }
 
+    public function updateImage()
+    {
+        if (!$this->checkLogin()) {
+            return;
+        }
 
+        $userid = $_SESSION["ESCLOGIN"]["USERID"];
+        $image = new Image();
+        $image->elementtypeno = 2;
+        $image->elementtypeid = $userid;
+        
+        $result = $image->getFromElementId($image->elementtypeno,$image->elementtypeid);
+        
+
+        $tmpname = $_FILES["profileimage"]['tmp_name'];
+        $name = $_FILES["profileimage"]['name'];
+        $uploadPath = "assets/images/profile/";
+        $image->path = $name;
+        if (move_uploaded_file($tmpname,$uploadPath.$name)) {
+            if (count($result)>0) 
+            {
+                $image->id = $result[0]["id"];
+                $image->update();
+            }else {
+                $image->dimensions = 1;
+                $image->insert();
+            }
+        }
+       header("Location: ".SITEADRESS."userprofile");
+
+    }
 
     public function signUpIndex($values = null)
 

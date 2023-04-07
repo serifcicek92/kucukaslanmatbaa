@@ -8,55 +8,29 @@
 						<table class="table">
 							<thead>
 								<tr>
-									<th>Order ID</th>
-									<th>Date</th>
-									<th>Items</th>
-									<th>Total Price</th>
-									<th>Status</th>
+									<th>Sipariş ID</th>
+									<th>Tarih</th>
+									<th>Adet</th>
+									<th>Toplam tutar</th>
+									<th>Durum</th>
 									<th></th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>#451231</td>
-									<td>Mar 25, 2016</td>
-									<td>2</td>
-									<td>$99.00</td>
-									<td><span class="label label-primary">Processing</span></td>
-									<td><a href="order.html" class="btn btn-default">View</a></td>
-								</tr>
-								<tr>
-									<td>#451231</td>
-									<td>Mar 25, 2016</td>
-									<td>3</td>
-									<td>$150.00</td>
-									<td><span class="label label-success">Completed</span></td>
-									<td><a href="order.html" class="btn btn-default">View</a></td>
-								</tr>
-								<tr>
-									<td>#451231</td>
-									<td>Mar 25, 2016</td>
-									<td>3</td>
-									<td>$150.00</td>
-									<td><span class="label label-danger">Canceled</span></td>
-									<td><a href="order.html" class="btn btn-default">View</a></td>
-								</tr>
-								<tr>
-									<td>#451231</td>
-									<td>Mar 25, 2016</td>
-									<td>2</td>
-									<td>$99.00</td>
-									<td><span class="label label-info">On Hold</span></td>
-									<td><a href="order.html" class="btn btn-default">View</a></td>
-								</tr>
-								<tr>
-									<td>#451231</td>
-									<td>Mar 25, 2016</td>
-									<td>3</td>
-									<td>$150.00</td>
-									<td><span class="label label-warning">Pending</span></td>
-									<td><a href="order.html" class="btn btn-default">View</a></td>
-								</tr>
+								<?php 
+								foreach ($model as $order) {
+									echo '
+									<tr>
+										<td>#'.$order->id.'</td>
+										<td>'.date("d/m/Y",strtotime($order->orderdate)).'</td>
+										<td>'.$order->totalitem.'</td>
+										<td>'.$order->amounttotal.' TL</td>
+										<td><span class="label '.$order->statusval2.'">'.$order->statusval.'</span></td>
+										<td><a href="/order/'.$order->id.'" class="btn btn-default">Görüntüle</a></td>
+									</tr>
+									';
+								}
+								?>
 							</tbody>
 						</table>
 					</div>

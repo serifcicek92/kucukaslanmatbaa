@@ -23,6 +23,7 @@ class Basketcont extends Controller{
                     // $_COOKIE["BASKETUUID"] = $basket[0]->guuid;
                     $basketModel->loadData($basket[0]);
                 }
+
                 $basketDetayModel = new Basketdetail();
                 $basketDetayModel->basketid = $basketModel->id;
                 $basketDetayModel->productid = $_POST["productid"];

@@ -105,10 +105,12 @@ $images = explode(',', $model->imagelist);
 		const formdata = new FormData();
 		formdata.append("productid",product);
 		SendXMLHttpRequest(formdata,"/addbasket",function handle(returnStr, status){
+			console.log(returnStr);
 			if (returnStr.trim()==1) {
-				console.log("başarılı");
+				console.log("başarılı kk");
 				document.querySelector(".alertdialog").classList.remove("fade");
 				SendXMLHttpRequest(null,"/basketview",function handle(returnStr,status) {
+					console.log("buda başarılı");
 					document.querySelector(".basketview").innerHTML = returnStr;
 				});
 			}

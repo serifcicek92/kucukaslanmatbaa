@@ -3,10 +3,10 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="content">
-					<h1 class="page-name">Sepet</h1>
+					<h1 class="page-name">Sipariş Detayı</h1>
 					<ol class="breadcrumb">
 						<li><a href="/">Anasayfa</a></li>
-						<li class="active">Sepet</li>
+						<li class="active">Sipariş Detayı</li>
 					</ol>
 				</div>
 			</div>
@@ -43,11 +43,8 @@
                                 <a href="product/'.$urun["product"]->seourl.'">'.$urun["product"]->name.'</a>
                                 </div>
                             </td>
-                            <td>'.$urun["basketdetay"]->miktar.'</td>
-                            <td class="">'.$urun["total"].'</td>
-                            <td class="">
-                                <a class="product-remove" href="/sepettensil/'.$urun["basketdetay"]->id.'">sil</a>
-                            </td>
+                            <td>'.$urun["orderdetail"]->amount.' x '.$urun["orderdetail"]->unitprice.'</td>
+                            <td class="">'.$urun["orderdetail"]->amounttotal.'</td>
                         </tr>
                         ';
                     }
@@ -55,7 +52,7 @@
                    
                   </tbody>
                 </table>
-                <a href="/checkout" class="btn btn-main pull-right">Siparişi Tamamla</a>
+                <a href="/iadetalebi/<?php echo $model[0]["orderdetail"]->orderid?>" class="btn btn-main pull-right">İade Talebi</a>
               </form>
             </div>
           </div>

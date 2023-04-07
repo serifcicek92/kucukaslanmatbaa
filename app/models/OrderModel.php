@@ -42,7 +42,7 @@ class Order extends Model
 			'phone' => [self::RULE_REQUIRED, [self::RULE_MAX, 'max' => 80]],
 			'zipcode' => [self::RULE_REQUIRED, [self::RULE_MAX, 'max' => 15]],
 			'city' => [self::RULE_REQUIRED, [self::RULE_MAX, 'max' => 80]],
-			'district' => [self::RULE_REQUIRED, [self::RULE_MAX, 'district' => 80]]
+			'district' => [self::RULE_REQUIRED, [self::RULE_MAX, 'max' => 80]]
 		];
     }
 
@@ -84,32 +84,39 @@ class Order extends Model
 			$this->db->beginTransaction();
 			$status = $this->db->prepare(
                 "UPDATE orders 
-                 SET status = :status, 
-                     paymentoption = :paymentoption, 
-                     installments = :installments, 
-                     shippingid = :shippingid,
-                     shippingtrackingnumber = :shippingtrackingnumber,
-                     calculateddeliverydate = :calculateddeliverydate, 
+                 SET status = coalesce(:status,status), 
+				 	 userid = coalesce(:userid,userid),
+                     paymentoption = coalesce(:paymentoption,paymentoption), 
+                     installments = coalesce(:installments,installments),
+					 orderdate = coalesce(:orderdate,orderdate), 
+                     shippingid = coalesce(:shippingid,shippingid),
+                     shippingtrackingnumber = coalesce(:shippingtrackingnumber,shippingtrackingnumber),
+                     calculateddeliverydate = coalesce(:calculateddeliverydate,calculateddeliverydate), 
+                     deliverydate = coalesce(:deliverydate,deliverydate), 
                      updateid = :updateid,
-                     current_timestamp(), 
-                     taxtotal = :taxtotal, 
-                     amounttotal = :amounttotal,
-					 orderer = :orderer,
-					 adress = :adress,
-					 phone = :phone,
-					 zipcode = :zipcode,
-					 city = :city,
-					 district = :district
+                     updatetime = current_timestamp(), 
+                     taxtotal = coalesce(:taxtotal,taxtotal), 
+                     amounttotal = coalesce(:amounttotal,amounttotal),
+					 orderer = coalesce(:orderer,orderer),
+					 adress = coalesce(:adress,adress),
+					 phone = coalesce(:phone,phone),
+					 zipcode = coalesce(:zipcode,zipcode),
+					 city = coalesce(:city,city),
+					 district = coalesce(:district,district)
 				WHERE id = :id
 						");
 			$status->bindParam(':status', $this->status, ($this->status == null ? \PDO::PARAM_NULL : \PDO::PARAM_INT));
+			$status->bindParam(':userid', $this->userid, ($this->userid == null ? \PDO::PARAM_NULL : \PDO::PARAM_INT));
 			$status->bindParam(':paymentoption', $this->paymentoption, ($this->paymentoption == null ? \PDO::PARAM_NULL : \PDO::PARAM_INT));
 			$status->bindParam(':installments', $this->installments, ($this->installments == null ? \PDO::PARAM_NULL : \PDO::PARAM_INT));
+			$status->bindParam(':orderdate', $this->orderdate, ($this->orderdate == null ? \PDO::PARAM_NULL : \PDO::PARAM_STR));
 			$status->bindParam(':shippingid', $this->shippingid, ($this->shippingid == null ? \PDO::PARAM_NULL : \PDO::PARAM_INT));
 			$status->bindParam(':shippingtrackingnumber', $this->shippingtrackingnumber, ($this->shippingtrackingnumber == null ? \PDO::PARAM_NULL : \PDO::PARAM_STR));
-			$status->bindParam(':shippingtrackingnumber', $this->shippingtrackingnumber, ($this->shippingtrackingnumber == null ? \PDO::PARAM_NULL : \PDO::PARAM_STR));
 			$status->bindParam(':calculateddeliverydate', $this->calculateddeliverydate, ($this->calculateddeliverydate == null ? \PDO::PARAM_NULL : \PDO::PARAM_STR));
+			$status->bindParam(':deliverydate', $this->deliverydate, ($this->deliverydate == null ? \PDO::PARAM_NULL : \PDO::PARAM_STR));
 			$status->bindParam(':updateid', $this->addid, ($this->addid == null ? \PDO::PARAM_NULL : \PDO::PARAM_INT));
+            $status->bindParam(':taxtotal', $this->taxtotal, (strval($this->taxtotal) == null ? \PDO::PARAM_NULL : \PDO::PARAM_STR));
+            $status->bindParam(':amounttotal', $this->amounttotal, (strval($this->amounttotal) == null ? \PDO::PARAM_NULL : \PDO::PARAM_STR));
 			$status->bindParam(':id', $this->id, ($this->id == null ? \PDO::PARAM_NULL : \PDO::PARAM_INT));
 			$status->bindParam(':orderer', $this->orderer, ($this->orderer == null ? \PDO::PARAM_NULL : \PDO::PARAM_STR));
 			$status->bindParam(':adress', $this->adress, ($this->adress == null ? \PDO::PARAM_NULL : \PDO::PARAM_STR));
@@ -167,6 +174,24 @@ class Order extends Model
 			");
 		$status->bindParam(":llimit", $limit, \PDO::PARAM_INT);
 		$status->bindParam(":loffset", $offset, \PDO::PARAM_INT);
+		$status->execute();
+		return $status->fetchAll(\PDO::FETCH_OBJ);
+	}
+
+	public function getUserOrderList($userId)
+	{
+		$status = $this->db->prepare(
+			"SELECT o.id,
+					o.orderdate,
+					(SELECT SUM(od.amount) from orderdetails od where od.orderid = o.id) as 'totalitem',
+					o.amounttotal,
+					o.status,
+					(SELECT c.value1 from combovalues c where c.name='ORDERSTATUS' and c.code = o.status) as 'statusval',
+					(SELECT c.value2 from combovalues c where c.name='ORDERSTATUS' and c.code = o.status) as 'statusval2'
+			FROM orders o
+			WHERE o.userid = :userid and
+				  o.active = 1");
+		$status->bindParam(":userid",$userId,\PDO::PARAM_INT);
 		$status->execute();
 		return $status->fetchAll(\PDO::FETCH_OBJ);
 	}

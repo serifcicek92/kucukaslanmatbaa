@@ -2,15 +2,15 @@
 <!-- Start WOWSlider.com BODY section --> <!-- add to the <body> of your page -->
 <div id='wowslider-container1'>
 	<div class='ws_images'><ul>
-		<li><img src='assets/images/slider/slider-1.jpg' alt='slider-1' title='slider-1' id='wows1_0'/></li>
-		<li><a href='http://wowslider.net'><img src='assets/images/slider/slider-2.jpg' alt='bootstrap carousel example' title='slider-2' id='wows1_1'/></a></li>
-		<li><img src='assets/images/slider/slider-3.jpg' alt='slider-3' title='slider-3' id='wows1_2'/></li>
+		<li><img src='assets/images/slider/slider-1.jpg' width="100%" alt='slider-1' title='slider-1' id='wows1_0'/></li>
+		<li><img src='assets/images/slider/slider-2.jpg' width="100%" alt='bootstrap carousel' title='slider-2' id='wows1_1'/></li>
+		<li><img src='assets/images/slider/slider-3.jpg' width="100%" alt='slider-3' title='slider-3' id='wows1_2'/></li>
 	</ul></div>
 	<div class='ws_bullets'><div>
-		<a href='#' title='slider-1'><span><img src='assets/images/slider/slider-1.jpg' alt='slider-1'/>1</span></a>
-		<a href='#' title='slider-2'><span><img src='assets/images/slider/slider-2.jpg' alt='slider-2'/>2</span></a>
-		<a href='#' title='slider-3'><span><img src='assets/images/slider/slider-3.jpg' alt='slider-3'/>3</span></a>
-	</div></div><div class='ws_script' style='position:absolute;left:-99%'><a href='http://wowslider.net'>slider html</a> by WOWSlider.com v9.0</div>
+		<a href='#' title='slider-1'><span><img src='assets/images/slider/slider-1.jpg' width="100%" alt='slider-1'/>1</span></a>
+		<a href='#' title='slider-2'><span><img src='assets/images/slider/slider-2.jpg' width="100%" alt='slider-2'/>2</span></a>
+		<a href='#' title='slider-3'><span><img src='assets/images/slider/slider-3.jpg' width="100%" alt='slider-3'/>3</span></a>
+	</div></div><div class='ws_script' style='position:absolute;left:-99%'></div>
 	<div class='ws_shadow'></div>
 </div>	
 

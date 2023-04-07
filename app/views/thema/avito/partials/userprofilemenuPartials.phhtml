@@ -1,4 +1,4 @@
 <ul class="list-inline dashboard-menu text-center">
-    <li><a class="active" href="/userprofile">Profil Detayı</a></li>
-    <li><a href="/userorders">Siparişler</a></li>
+    <li><a <?php echo str_contains($_SERVER["REQUEST_URI"],"userprofile") ? " class=active" : "";?> href="/userprofile">Profil Detayı</a></li>
+    <li><a href="/userorders" <?php echo str_contains($_SERVER["REQUEST_URI"],"userorders") ? " class=active" : "";?>>Siparişler</a></li>
 </ul>

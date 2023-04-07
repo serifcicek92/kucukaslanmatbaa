@@ -37,9 +37,9 @@
 								<?php if (@$_SESSION["ESCLOGIN"]["rolid"]==1) {
 									echo '<li class="nav-item p-1"><a href="admin" class="nav-link">Yönetim Paneli</a></li>';
 								}?>
-								<li class="nav-item p-1"><a href="userprofile" class="nav-link">User Profile</a></li>
-								<li class="nav-item p-1"><a href="usersettings" class="nav-link">User Settings</a></li>
-								<li class="nav-item p-1"><a href="logout" class="nav-link">Logout</a></li>
+								<li class="nav-item p-1"><a href="userprofile" class="nav-link">Kullanıcı Profili</a></li>
+								<li class="nav-item p-1"><a href="usersettings" class="nav-link">Ayarlar</a></li>
+								<li class="nav-item p-1"><a href="logout" class="nav-link">Oturumu Sonlandır</a></li>
 							</ul>
 						</li>
             		<?php endif;?> 
@@ -68,7 +68,6 @@
 					<li class="commonSelect">
 						<select class="form-control">
 							<option>TR</option>
-							<option>EN</option>
 						</select>
 					</li><!-- / Languages -->
 

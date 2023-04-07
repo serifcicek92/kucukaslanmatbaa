@@ -52,11 +52,17 @@ $app->run("/shop/{url}","shop/getProduct");
 $app->run("/product/{url}", "shop/getProductDetail");
 $app->run("/hakkimizda", "anasayfa/hakkimizda");
 $app->run("/iletisim", "anasayfa/iletisim");
+$app->run("/firmamenu/{val}","anasayfa/firmaMenu");
 
 
 $app->run("/userprofile","auth/userProfileIndex");
 $app->run("/usersettings","auth/userSettingsIndex");
+$app->run("/usersettings","auth/userSettingsIndex","post");
+$app->run("/updateimage","auth/updateImage","post");
 $app->run("/userorders", "shop/userOrders");
+$app->run("/order/{id}","shop/orderDetail" );
+$app->run("/resetpassword","auth/resetPassword");
+$app->run("/resetpassword","auth/resetPassword","post");
 
 
 $app->run("/login","auth/login");
@@ -69,11 +75,12 @@ $app->run("/forgetpassword","auth/forgetPassword");
 $app->run("/forgetpassword","auth/forgetPassword","post");
 $app->run("/logout","auth/logout");
 $app->run("/mailonay/{val}","auth/mailonay");
+
 $app->run("/checkout","shop/getCheckout");
 $app->run("/sepet","shop/getBasketList");
 $app->run("/sepettensil/{id}","basketcont/delBasket");
 $app->run("/checkoutcomplate","shop/checkoutComplate","post");
-$app->run("/firmamenu/{val}","anasayfa/firmaMenu");
+
 
 $app->run("/addbasket","basketcont/addBasket","post");
 // $app->run('/user/uservisit','auth/userVisit','post');
