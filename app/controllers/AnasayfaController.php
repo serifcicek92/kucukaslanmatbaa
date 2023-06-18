@@ -21,9 +21,9 @@ class anasayfa extends Controller
 
     {
 
-        Application::$app->view->title = "ESC Helping yardımlaşma, dayanışma";
+        Application::$app->view->title = "Küçükaslan Matbaa | Davetiye | Kartvizit | Dijital Baskı";
 
-        Application::$app->view->description = "yardımlaşma, dayanışma, bilgi alışverişi forum sitesi";
+        Application::$app->view->description = "Davetiye tasarımları, kartvizitler ve baskı işlemleri";
 
         // $subjectModel = new SubjectModel();
 

@@ -24,7 +24,8 @@ class Shop extends Controller
         $productModel = new Product();
         $productModel->categoryid = $categoryId;
         $products = $productModel->getListView($sayfa, 20, $categoryId);
-
+        Application::$app->view->title =$categoryMod->get(null, null, $values)[0]["name"];
+        Application::$app->view->description =$categoryMod->get(null, null, $values)[0]["explain"];
 
         $this->render('shop', ['model' => $products]);
     }
